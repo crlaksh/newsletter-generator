@@ -22,8 +22,7 @@ class ContentExtractor extends Helper {
         $title = $data['title'];
         $blurb = $data['blurb'];
         $image = $data['media']['image']['url'];
-
-        $minutes = FALSE;
+        $minutes = $data['media']['duration'];
 
         if (!$title || !$blurb || !$image) {
             $content = Helper::downloadWebPage($url);
@@ -58,11 +57,13 @@ class ContentExtractor extends Helper {
                     $videoSrc = $videoNode->item(0)->getAttribute('src');
                     $videoId = preg_replace("/http\:\/\/www\.youtube\.com\/embed\/(.*)\?feature\=oembed/", "$1", $videoSrc);
                     $imagesrc = sprintf($videoImagePathTmpl, $videoId);
-                    $gdataPath = sprintf($videoGDataPathTmpl, $videoId);
-                    $gdataString = Helper::downloadWebPage($videoGDataPathTmpl);
-                    $gdata = json_decode($gdataString);
-                    $seconds = $gdata['entry']['media\$group']['yt\$duration']['seconds'];
-                    $minutes = round($seconds / 60, 2);
+                    if (!$minutes) {
+                        $gdataPath = sprintf($videoGDataPathTmpl, $videoId);
+                        $gdataString = Helper::downloadWebPage($videoGDataPathTmpl);
+                        $gdata = json_decode($gdataString);
+                        $seconds = $gdata['entry']['media\$group']['yt\$duration']['seconds'];
+                        $minutes = round($seconds / 60, 2);
+                    }
                 }
             }
             if ($imagesrc) {
