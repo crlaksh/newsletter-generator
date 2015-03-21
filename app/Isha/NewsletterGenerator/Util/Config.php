@@ -7,6 +7,11 @@ namespace Isha\NewsletterGenerator\Util;
 */
 class Config {
     public static function getConfig() {
+        $configData = file_get_contents(__DIR__ . "/../Resource/config/internal_config.json");
+        $config = json_decode($configData, TRUE);
+        return $config;
+    }
+    public static function getUserConfig() {
         $configData = file_get_contents(__DIR__ . "/../Resource/config/config.json");
         $config = json_decode($configData, TRUE);
         return $config;

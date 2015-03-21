@@ -1,179 +1,122 @@
 {
-    "newsletter_title": "Tamil_Weekly_Newsletter",
-    "data_path": "data/",
-    "images_path": "images/",
-    "newsletter_template": "app/Isha/NewsletterGenerator/Resource/templates/Tamil_Weekly_NL.twig",
-    "date": "14thMarch",
-    "year": "2015",
-    "tamil_date": "மார்ச். 14",
-    "blog_data": {
-        "title_element": "//*[contains(@class,'entry-title')]/span",
-        "image_element": "//*[contains(@class,'entry-media')]//img",
-        "video_element": "//*[contains(@class,'entry-media')]//iframe",
-        "blurb_element": "//*[contains(@class,'entry-content')]/p[following-sibling::div]/strong",
-        "video_image_link": "http://img.youtube.com/vi/%s/maxresdefault.jpg",
-        "video_gdata_link": "http://gdata.youtube.com/feeds/api/videos/%s?v=2&alt=json&prettyprint=true",
-        "blogs": [
-            {
-                "url": "http://tamilblog.ishafoundation.org/aezharai-sani-irunthal-enna-seiyalam/",
-                "image": {
-                    "file": "none",
-                    "width": "650",
-                    "height": "366",
-                    "resolution": "75"
-                }
-            },
-            {
-                "url": "http://tamilblog.ishafoundation.org/tiruppur-soft-parotta/",
-                "image": {
-                    "file": "none",
-                    "width": "325",
-                    "height": "222",
-                    "resolution": "75"
-                }
-            },
-            {
-                "url": "http://tamilblog.ishafoundation.org/chidambaram-kovil-eppadi-uruvanathu/",
-                "image": {
-                    "file": "none",
-                    "width": "325",
-                    "height": "222",
-                    "resolution": "75"
-                }
-            },
-            {
-                "url": "http://tamilblog.ishafoundation.org/numerology-ungal-rasi-number-ethu/",
-                "image": {
-                    "file": "none",
-                    "width": "325",
-                    "height": "250",
-                    "resolution": "75"
-                }
-            },
-            {
-                "url": "http://tamilblog.ishafoundation.org/manitha-inam-eppadi-azhiyum/",
-                "image": {
-                    "file": "none",
-                    "width": "325",
-                    "height": "250",
-                    "resolution": "75"
-                }
-            }
-        ]
-    },
-    "quotes": {
-        "quote1": "உங்கள் மனம் நிச்சலனமாய் இருந்தால், உங்கள் புத்திசாலித்தனம் மனித அறிவின் எல்லைகளைக் கடந்து செயல்படும்."
-    },
-    "banners": {
-        "banner1": {
-            "title": "தினம் ஒரு குருவாசகம்",
-            "url": "http://sadhguru.org/quotes/",
-            "image": "http://www.ishafoundation.org/mailmarketer/admin/temp/newsletters/2635/sg-message-tamil-2.jpg"
-        },
-        "banner2": {
-            "title": "பொதிகை டிவியில் சத்குருவின் 'ஆசைப்படு அடைந்துவிடு'",
-            "url": "https://www.ishashoppe.com/downloads/portfolio/thirumanam-nil-gavani-seyalpadu/",
-            "image": "images/ThirumanamDVD.jpg"
-        },
-        "banner3": {
-            "title": "பொதிகை டிவியில் சத்குருவின் 'ஆசைப்படு அடைந்துவிடு'",
-            "url": "https://www.ishashoppe.com/downloads/portfolio-type/tamil/",
-            "image": "images/isha_downloads_for_nl.jpg"
-        }
-    },
+    "newsletter_title": "{{NEWSLETTER_TITLE}}",
+    "date": "{{DATE}}",
+    "year": "{{YEAR}}",
+    "display_date": "{{DISPLAY_DATE}}",
     "blocks": [
         {
-            "template_type": "single_blog",
+            "type": "single_blog",
             "data": {
-                "type": "blog",
-                "url": "http://tamilblog.ishafoundation.org/aezharai-sani-irunthal-enna-seiyalam/",
-                "image": {
-                    "width": "650",
-                    "height": "366",
-                    "resolution": "75"
+                "title": false,
+                "blurb": false,
+                "url": "{{URL}}",
+                "media": {
+                    "type": "{{image|audio|video}}",
+                    "duration": false,
+                    "image": {
+                        "url": false,
+                        "width": "650",
+                        "height": "366",
+                        "resolution": "75"
+                    }
                 }
             }
         },
         {
-            "template_type": "quote",
+            "type": "quote",
             "data": {
-                "type": "quote",
-                "quote": "உங்கள் மனம் நிச்சலனமாய் இருந்தால், உங்கள் புத்திசாலித்தனம் மனித அறிவின் எல்லைகளைக் கடந்து செயல்படும்."
+                "quote": "{{QUOTE}}"
             }
         },
         {
-            "template_type": "double_blog",
-            "data": [
-                {
-                    "type": "blog",
-                    "url": "http://tamilblog.ishafoundation.org/tiruppur-soft-parotta/",
-                    "image": {
-                        "width": "325",
-                        "height": "222",
-                        "resolution": "75"
+            "type": "double_blog",
+            "data": {
+                "left": {
+                    "title": false,
+                    "blurb": false,
+                    "url": "{{URL}}",
+                    "media": {
+                        "type": "{{image|audio|video}}",
+                        "duration": false,
+                        "image": {
+                            "url": false,
+                            "width": "325",
+                            "height": "222",
+                            "resolution": "75"
+                        }
                     }
                 },
-                {
-                    "type": "blog",
-                    "url": "http://tamilblog.ishafoundation.org/chidambaram-kovil-eppadi-uruvanathu/",
+                "right": {
+                    "title": false,
+                    "blurb": false,
+                    "url": "{{URL}}",
+                    "media": {
+                        "type": "{{image|audio|video}}",
+                        "duration": false,
+                        "image": {
+                            "url": false,
+                            "width": "325",
+                            "height": "222",
+                            "resolution": "75"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "type": "banner",
+            "data": {
+                "title": "{{TITLE}}",
+                "url": "{{URL}}",
+                "image": "{{IMAGE_URL}}"
+            }
+        },
+        {
+            "type": "split_blog",
+            "data": {
+                "title": false,
+                "blurb": false,
+                "url": "{{URL}}",
+                "media": {
+                    "type": "{{image|audio|video}}",
+                    "duration": false,
                     "image": {
+                        "url": false,
                         "width": "325",
-                        "height": "222",
+                        "height": "250",
                         "resolution": "75"
                     }
                 }
-            ]
-        },
-        {
-            "template_type": "banner",
-            "data": {
-                "type": "banner",
-                "title": "தினம் ஒரு குருவாசகம்",
-                "url": "http://sadhguru.org/quotes/",
-                "image": "http://www.ishafoundation.org/mailmarketer/admin/temp/newsletters/2635/sg-message-tamil-2.jpg"
             }
         },
         {
-            "template_type": "split_blog",
+            "type": "split_blog_mirror",
             "data": {
-                "type": "blog",
-                "url": "http://tamilblog.ishafoundation.org/numerology-ungal-rasi-number-ethu/",
-                "image": {
-                    "width": "325",
-                    "height": "250",
-                    "resolution": "75"
+                "title": false,
+                "blurb": false,
+                "url": "{{URL}}",
+                "media": {
+                    "type": "{{image|audio|video}}",
+                    "duration": false,
+                    "image": {
+                        "url": false,
+                        "width": "325",
+                        "height": "250",
+                        "resolution": "75"
+                    }
                 }
             }
         },
         {
-            "template_type": "split_blog_mirror",
+            "type": "banner",
             "data": {
-                "type": "blog",
-                "url": "http://tamilblog.ishafoundation.org/manitha-inam-eppadi-azhiyum/",
-                "image": {
-                    "width": "325",
-                    "height": "250",
-                    "resolution": "75"
-                }
+                "title": "{{TITLE}}",
+                "url": "{{URL}}",
+                "image": "{{IMAGE_URL}}"
             }
         },
         {
-            "template_type": "banner",
-            "data": {
-                "type": "banner",
-                "title": "பொதிகை டிவியில் சத்குருவின் 'ஆசைப்படு அடைந்துவிடு'",
-                "url": "https://www.ishashoppe.com/downloads/portfolio/thirumanam-nil-gavani-seyalpadu/",
-                "image": "images/ThirumanamDVD.jpg"
-            }
-        },
-        {
-            "template_type": "banner",
-            "data": {
-                "type": "banner",
-                "title": "பொதிகை டிவியில் சத்குருவின் 'ஆசைப்படு அடைந்துவிடு'",
-                "url": "https://www.ishashoppe.com/downloads/portfolio-type/tamil/",
-                "image": "images/isha_downloads_for_nl.jpg"
-            }
+            "type": "social_links_banner"
         }
     ]
 }

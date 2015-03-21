@@ -1,0 +1,36 @@
+<table class="blog_image" width="100%" bgcolor="white" border="0" cellpadding="0" cellspacing="0">
+    {% if data['duration'] %}
+    <tr>
+        <td class="video_title" style="background-color: #1E1E1E; padding: 6px 5px 4px 10px; vertical-align: middle; font-size: 9px;">
+            <a href="{{data['url']}}?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign={{date}}{{year}}-{{newsletter_title}}" style="text-decoration: none; color: #EEE;" target="_blank" title="{{data['title']}}">
+                {{data['title']}}
+            </a>
+        </td>
+    </tr>
+    {% endif %}
+    <tr>
+        <td class="video_image">
+            <a href="{{data['url']}}?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign={{date}}{{year}}-{{newsletter_title}}" style="text-decoration: none" target="_blank" title="{{data['title']}}">
+                <img src="{{data['image']}}" alt="{{data['title']}}" title="{{data['title']}}" border="0" height="{% if image_height %}{{image_height}}{% else %}100%{% endif %}" width="100%" />
+            </a>
+        </td>
+    </tr>
+    {% if data['duration'] %}
+    <tr>
+        <td class="video_footer" style="background-color: #1E1E1E; padding: 2px 5px 4px 5px; font-size: 10px;height: 18px;vertical-align: middle; color: #7F7F7F;" valign="middle">
+            <a href="{{data['url']}}?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign={{date}}{{year}}-{{newsletter_title}}" style="text-decoration: none; color: #999;" target="_blank" title="{{data['title']}}">
+                <span style="float: left; width: 0px; height: 0px; margin-top: 6px; margin-left: 12px; margin-right: 16px; border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-left: 10px solid #7F7F7F; z-index: 2; transition: all .3s;"></span>
+                <span style="float: left; width: 3px; border: 4px solid transparent; border-right-color: #7F7F7F; background: transparent; margin-top: 5px;">
+                    <span style="float: left; width: 5px; height: 5px;background-color:#7F7F7F; margin-right:-5px;padding:0;border:0"></span>
+                </span>
+                <span style="float: left; padding-top: 2px; width: 2px; height: 8px; margin-left: 2px;margin-right: 0px; z-index: 2; font-size: 8px; margin-top:3px;">)</span>
+                <span style="float: left; padding-top: 5px; width: 2px; height: 8px; margin-left: 1px;margin-right: 12px; z-index: 2; font-size: 12px; margin-top:1px;">)</span>
+                <span style="float: left; color: #EEE; padding-top: 5px;">0:00</span>
+                <span style="float: left; font-size:13px; padding-top: 5px;">&nbsp;/&nbsp;</span>
+                <span style="float: left; padding-top: 5px;">{{data['duration']}}</span>
+                <span style="float: right; padding-top: 5px;">YouTube</span>
+            </a>
+        </td>
+        {% endif %}
+    </tr>
+</table>
