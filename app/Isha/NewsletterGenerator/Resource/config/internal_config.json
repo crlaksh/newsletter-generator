@@ -1,0 +1,13 @@
+{
+    "data_path": "data/",
+    "images_path": "images/",
+    "newsletter_template": "app/Isha/NewsletterGenerator/Resource/templates/Tamil_Weekly_NL.twig",
+    "blog_data": {
+        "title_element": "//*[contains(@class,'entry-title')]/span",
+        "image_element": "//*[contains(@class,'entry-media')]//img",
+        "video_element": "//*[contains(@class,'entry-media')]//iframe",
+        "blurb_element": "//*[contains(@class,'entry-content')]/p[following-sibling::div]/strong",
+        "video_image_link": "http://img.youtube.com/vi/%s/maxresdefault.jpg",
+        "video_gdata_link": "http://gdata.youtube.com/feeds/api/videos/%s?v=2&alt=json&prettyprint=true"
+    }
+}

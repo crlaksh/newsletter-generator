@@ -3,7 +3,7 @@
     <tr>
         <td>
             <div class="title" style="font-size: 16px;font-weight:bold; text-align: {% if title_align %}{{title_align}}{%else%}center{% endif %}; padding-top: 20px; padding-right: 10px; padding-left: 20px;">
-                <a href="{{data['url']}}?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign={{date}}{{year}}-{{data['newsletter_title']}}" target="_blank" style="color: #c46f17; text-decoration: none;">{{data['title']}}</a>
+                <a href="{{data['url']}}{% include 'utm_param.twig' %}" target="_blank" style="color: #c46f17; text-decoration: none;">{{data['title']}}</a>
             </div>
         </td>
     </tr>
@@ -17,7 +17,7 @@
     <tr>
         <td>
             <div class="readMore" style="padding: 13px 20px 50px; 15px">
-                <a href="{{data['url']}}?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign={{date}}{{year}}-{{data['newsletter_title']}}" target="_blank" style="float: left;"><img src="http://www.ishafoundation.org/mailmarketer/admin/temp/user/2/melum.gif" alt="மேலும்" border="0" height="30" width="76" /></a>
+                <a href="{{data['url']}}{% include 'utm_param.twig' %}" target="_blank" style="float: left;"><img src="http://www.ishafoundation.org/mailmarketer/admin/temp/user/2/melum.gif" alt="மேலும்" border="0" height="30" width="76" /></a>
             </div>
         </td>
     </tr>

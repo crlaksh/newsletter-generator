@@ -1,7 +1,7 @@
 <table class="banner" width="100%" bgcolor="white" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td class="image" valign="top">
-            <a href="{{data['url']}}?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign={{date}}{{year}}-{{data['newsletter_title']}}"><img src="{{data['image']}}" alt="{{data['title']}}" title="{{data['title']}}" style="display: block;" border="0" width="100%" height="130" /></a>
+            <a href="{{data['url']}}{% include 'utm_param.twig' %}"><img src="{{data['media']['image']['url']}}" alt="{{data['title']}}" title="{{data['title']}}" style="display: block;" border="0" width="100%" height="130" /></a>
         </td>
     </tr>
 </table>
