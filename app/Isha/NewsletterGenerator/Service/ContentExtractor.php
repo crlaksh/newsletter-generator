@@ -79,7 +79,7 @@ class ContentExtractor extends Helper {
                     $data['media']['image']['resolution'],
                     TRUE
                 );
-                $image = $imageFileName . $imageFileExtension;
+                $image = $imagePath . $imageFileName . $imageFileExtension;
             }
         }
 
