@@ -1,122 +1,13 @@
 {
-    "newsletter_title": "{{NEWSLETTER_TITLE}}",
-    "date": "{{DATE}}",
-    "year": "{{YEAR}}",
-    "display_date": "{{DISPLAY_DATE}}",
-    "blocks": [
-        {
-            "type": "single_blog",
-            "data": {
-                "title": false,
-                "blurb": false,
-                "url": "{{URL}}",
-                "media": {
-                    "type": "{{image|audio|video}}",
-                    "duration": false,
-                    "image": {
-                        "url": false,
-                        "width": "650",
-                        "height": "366",
-                        "resolution": "75"
-                    }
-                }
-            }
-        },
-        {
-            "type": "quote",
-            "data": {
-                "quote": "{{QUOTE}}"
-            }
-        },
-        {
-            "type": "double_blog",
-            "data": {
-                "left": {
-                    "title": false,
-                    "blurb": false,
-                    "url": "{{URL}}",
-                    "media": {
-                        "type": "{{image|audio|video}}",
-                        "duration": false,
-                        "image": {
-                            "url": false,
-                            "width": "325",
-                            "height": "222",
-                            "resolution": "75"
-                        }
-                    }
-                },
-                "right": {
-                    "title": false,
-                    "blurb": false,
-                    "url": "{{URL}}",
-                    "media": {
-                        "type": "{{image|audio|video}}",
-                        "duration": false,
-                        "image": {
-                            "url": false,
-                            "width": "325",
-                            "height": "222",
-                            "resolution": "75"
-                        }
-                    }
-                }
-            }
-        },
-        {
-            "type": "banner",
-            "data": {
-                "title": "{{TITLE}}",
-                "url": "{{URL}}",
-                "image": "{{IMAGE_URL}}"
-            }
-        },
-        {
-            "type": "split_blog",
-            "data": {
-                "title": false,
-                "blurb": false,
-                "url": "{{URL}}",
-                "media": {
-                    "type": "{{image|audio|video}}",
-                    "duration": false,
-                    "image": {
-                        "url": false,
-                        "width": "325",
-                        "height": "250",
-                        "resolution": "75"
-                    }
-                }
-            }
-        },
-        {
-            "type": "split_blog_mirror",
-            "data": {
-                "title": false,
-                "blurb": false,
-                "url": "{{URL}}",
-                "media": {
-                    "type": "{{image|audio|video}}",
-                    "duration": false,
-                    "image": {
-                        "url": false,
-                        "width": "325",
-                        "height": "250",
-                        "resolution": "75"
-                    }
-                }
-            }
-        },
-        {
-            "type": "banner",
-            "data": {
-                "title": "{{TITLE}}",
-                "url": "{{URL}}",
-                "image": "{{IMAGE_URL}}"
-            }
-        },
-        {
-            "type": "social_links_banner"
-        }
-    ]
+    "data_path": "{{DATA_PATH}}",
+    "images_path": "{{IMAGES_PATH}}",
+    "newsletter_template": "{{TEMPLATE_FILE_PATH}}",
+    "blog_data": {
+        "title_element": "{{HTML_DOM_XPATH_FOR_TITLE}}",
+        "image_element": "{{HTML_DOM_XPATH_FOR_IMAGE}}",
+        "video_element": "{{HTML_DOM_XPATH_FOR_VIDEO}}",
+        "blurb_element": "{{HTML_DOM_XPATH_FOR_BLURB}}",
+        "video_image_link": "{{VIDEO_IMAGE_FILE_PATH}}",
+        "video_gdata_link": "{{VIDEO_GDATA_FILE_PATH}}"
+    }
 }

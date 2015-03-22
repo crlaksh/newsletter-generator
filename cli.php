@@ -10,6 +10,7 @@ $args = Helper::getCommandLineArguments($argv);
 $dataFile = isset($args['data']) ? $args['data'] : FALSE;
 
 $contentExtractor = new ContentExtractor();
+
 if ($dataFile) {
     $data = Helper::getExcelData($dataFile);
     $userConfig = array();
@@ -17,7 +18,8 @@ if ($dataFile) {
     $userConfig['blocks'] = $contentExtractor->getBlocksFromExcelData($data);
 }
 else {
-    $userConfig = Config::getUserConfig();
+    echo "\nData File Missing!!\n\n";
+    exit;
 }
 
 $config = Config::getConfig();
