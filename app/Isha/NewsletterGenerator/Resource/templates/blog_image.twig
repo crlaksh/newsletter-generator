@@ -1,4 +1,7 @@
 {% set image_height = data['media']['image']['height'] %}
+{% if image_height == ""  %}
+    {% set image_height = "100%" %}
+{% endif %}
 <table class="blog_image" width="100%" bgcolor="white" border="0" cellpadding="0" cellspacing="0">
     {% if data['duration'] %}
     <tr>
@@ -12,7 +15,7 @@
     <tr>
         <td class="image">
             <a href="{{data['url']}}{% include 'utm_param.twig' %}" style="text-decoration: none" target="_blank" title="{{data['title']}}">
-                <img src="{{data['media']['image']['url']}}" alt="{{data['title']}}" title="{{data['title']}}" border="0" height="{% if image_height %}{{image_height}}{% else %}100%{% endif %}" width="100%" />
+                <img src="{{data['media']['image']['url']}}" alt="{{data['title']}}" title="{{data['title']}}" border="0" height="{{image_height}}" width="100%" style="float: left" />
             </a>
         </td>
     </tr>
@@ -32,6 +35,6 @@
                 <span style="float: right; padding-top: 5px;">YouTube</span>
             </a>
         </td>
-        {% endif %}
     </tr>
+    {% endif %}
 </table>
