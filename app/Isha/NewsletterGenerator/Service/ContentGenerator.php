@@ -38,7 +38,7 @@ class ContentGenerator extends Helper {
             (
                 !isset($data['title']) ||
                 !isset($data['blurb']) ||
-                !isset($data['image']['url'])
+                !isset($data['media']['image']['url'])
             ) && in_array($blockType, $config['blogs'])
         ) {
             $url = $data['url'];
