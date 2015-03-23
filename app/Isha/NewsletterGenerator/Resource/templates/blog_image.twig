@@ -1,5 +1,5 @@
 <table class="blog_image" width="100%" bgcolor="white" border="0" cellpadding="0" cellspacing="0">
-    {% if data['duration'] %}
+    {% if data['media']['duration'] %}
     <tr>
         <td class="video_title" style="background-color: #1E1E1E; padding: 6px 5px 4px 10px; vertical-align: middle; font-size: 9px;">
             <a href="{{data['url']}}{% include 'utm_param.twig' %}" style="text-decoration: none; color: #DDD;" target="_blank" title="{{data['title']}}">
@@ -15,7 +15,7 @@
             </a>
         </td>
     </tr>
-    {% if data['duration'] %}
+    {% if data['media']['duration'] %}
     <tr>
         <td class="video_footer" style="background-color: #1E1E1E; padding: 2px 5px 2px 5px; font-size: 10px;height: 18px;vertical-align: middle; color: #7F7F7F;" valign="middle">
             <a href="{{data['url']}}{% include 'utm_param.twig' %}" style="text-decoration: none; color: #999;" target="_blank" title="{{data['title']}}">
@@ -27,10 +27,10 @@
                     <span style="float: left; padding-top: 7px; width: 2px; height: 8px; margin-left: 2px;margin-right: 0px; z-index: 2; font-size: 7px;">)</span>
                     <span style="float: left; padding-top: 4px; width: 2px; height: 8px; margin-left: 1px;margin-right: 12px; z-index: 2; font-size: 12px;">)</span>
                 </span>
-                <span style="display: inline-block; float:left">
-                    <span style="float: left; color: #EEE; padding-top: 5px;">00:00</span>
-                    <span style="float: left; font-size:13px; padding-top: 2px;"> / </span>
-                    <span style="float: left; padding-top: 5px;">{{data['duration']}}</span>
+                <span style="display: inline-block; float:left; color: #EEE; padding-top: 5px;font-family: Georgia; font-size: 11px;">
+                    {% set duration = data['media']['duration']|split(':') %}
+                    00:00{% if duration[0] != "00" %}:00{% endif %}
+                    <span style="color:#7F7F7F"> / {% if duration[0] != "00" %}{{duration[0]}}:{% endif %}{{duration[1]}}:{{duration[2]}}</span>
                 </span>
                 <span style="float: right; padding-top: 3px"><img src="http://www.ishafoundation.org/mail/app/index.php?/public/file/view/ry/se" alt="YouTube" /></span>
             </a>

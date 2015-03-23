@@ -3,6 +3,8 @@
 namespace Isha\NewsletterGenerator\Util;
 use \PHPExcelReader\SpreadsheetReader as Reader;
 use Exception;
+use DOMDocument;
+use DOMXpath;
 
 class Helper {
 
@@ -20,6 +22,20 @@ class Helper {
             curl_close($ch); // Close the curl handle.
             return $content;
         }
+    }
+
+    public static function getHtml($url) {
+        $content = Self::downloadWebPage($url);
+        $doc = new DOMDocument();
+        $doc->loadHTML($content);
+        $xpath = new DOMXpath($doc);
+        return $xpath;
+    }
+
+    public static function downloadImage($src, $dest) {
+        // if ()
+        $imageData = Self::downloadWebPage($src);
+        file_put_contents($dest, $imageData);
     }
 
     public static function resizeImage(
@@ -75,7 +91,7 @@ class Helper {
         imagedestroy($src_img);
     }
 
-    public static function getCommandLineArguments($rawInput) {
+    public static function getCommandLineArgument($rawInput, $dataType) {
         $args = array_splice($rawInput, 1);
         $values = array();
         foreach ($args as $key => $arg) {
@@ -100,10 +116,19 @@ class Helper {
                 $values[$arg] = TRUE;
             }
         }
-        return $values;
+        $data = isset($values['data']) ? $values['data'] : FALSE;
+        return $data;
     }
 
     public static function getExcelData($dataFile) {
+        if (!$dataFile) {
+            echo "\nData file not specified!!\n\n";
+            exit;
+        }
+        if (!is_file($dataFile)) {
+            echo "\nData file '" . $dataFile . "' not found!!\n\n";
+            exit;
+        }
         $excelData = new Reader($dataFile, FALSE, "UTF-8");
         $sheets = array();
         // iterate sheets
@@ -125,29 +150,57 @@ class Helper {
     }
 
     public static function embedImage(
-        $embeddedImageDest,
+        $outFile,
         $image, $embedImage,
-        $x, $y, $width, $height
+        $x, $y
     ) {
         $png = imagecreatefrompng($embedImage);
-        $jpeg = imagecreatefromjpeg($imgout);
-        list($width, $height) = getimagesize($imgout);
+        $jpeg = imagecreatefromjpeg($image);
+        list($width, $height) = getimagesize($image);
         list($newwidth, $newheight) = getimagesize($embedImage);
-        $embeddedImageDest = imagecreatetruecolor($width, $height);
-        imagecopyresampled($embeddedImageDest, $jpeg, 0, 0, 0, 0, $width, $height, $width, $height);
-        imagecopyresampled($embeddedImageDest, $png, 138, 100, 0, 0, $newwidth, $newheight, $newwidth, $newheight);
-        imagejpeg($embeddedImageDest, $imgout, 100);
+        $outFile = imagecreatetruecolor($width, $height);
+        imagecopyresampled($outFile, $jpeg, 0, 0, 0, 0, $width, $height, $width, $height);
+        imagecopyresampled($outFile, $png, $x, $y, 0, 0, $newwidth, $newheight, $newwidth, $newheight);
+        imagejpeg($outFile, $image, 100);
         imagedestroy($image);
     }
 
     public static function cropImage(
-        $croppedImageDest, $imageSrc,
+        $outFile, $imageSrc,
         $x, $y, $width, $height
     ) {
         $image = imagecreatefromjpeg($imageSrc);
         $image = imagecrop($image, array('x' => 140, 'y' => 0, 'width' => 1000, 'height'=> 720));
-        imagejpeg($image, $croppedImageDest, 100);
+        imagejpeg($image, $outFile, 100);
         imagedestroy($image);
+    }
+
+    public static function createDirectories($dirs) {
+        foreach ($dirs as $dir) {
+            if (!is_dir($dir)) {
+                mkdir($dir, 0777, TRUE);
+            }
+        }
+    }
+
+    public static function getElementTextContent($html, $xpath) {
+        $content = "";
+        $element = $html->query($xpath);
+        if ($element && $element->item(0)) {
+            $content = $element->item(0)->textContent;
+            $content = utf8_decode($content);
+        }
+        return $content;
+    }
+
+    public static function getElementAttribute($html, $xpath, $attr) {
+        $value = "";
+        $element = $html->query($xpath);
+        if ($element && $element->item(0)) {
+            $value = $element->item(0)->getAttribute($attr);
+            $value = utf8_decode($value);
+        }
+        return $value;
     }
 
 }

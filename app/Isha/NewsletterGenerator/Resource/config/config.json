@@ -1,0 +1,59 @@
+{
+    "data_path": "data/",
+    "images_path": "images/",
+    "newletter_dir": "{{newsletter_name}}",
+    "newletter_file": "{{newsletter_name}}.html",
+    "original_images_path": "images/original/",
+    "newsletter_template": "app/Isha/NewsletterGenerator/Resource/templates/Tamil_Weekly_Newsletter.twig",
+    "blog_data": {
+        "title_element": "//*[contains(@class,'entry-title')]/span",
+        "image_element": "//*[contains(@class,'entry-media')]//img",
+        "video_element": "//*[contains(@class,'entry-media')]//iframe",
+        "youtube_icon": "app/Isha/NewsletterGenerator/Resource/images/youtube.png",
+        "blurb_element": "//*[contains(@class,'entry-content')]/p[following-sibling::div]/strong",
+        "video_image_link": "http://img.youtube.com/vi/%s/maxresdefault.jpg",
+        "video_gdata_link": "http://gdata.youtube.com/feeds/api/videos/%s?v=2&alt=json&prettyprint=true"
+    },
+    "blogs": ["single_blog", "double_blog", "split_blog", "split_blog_mirror"],
+    "single_blog": {
+        "no_of_data": 1,
+        "type": "blog",
+        "defaults": {
+            "image": {
+                "width": "650",
+                "height": "433",
+                "resolution": "75"
+            }
+        }
+    },
+    "double_blog": {
+        "type": "blog",
+        "defaults": {
+            "image": {
+                "width": "325",
+                "height": "222",
+                "resolution": "75"
+            }
+        }
+    },
+    "split_blog": {
+        "type": "blog",
+        "defaults": {
+            "image": {
+                "width": "325",
+                "height": "270",
+                "resolution": "75"
+            }
+        }
+    },
+    "split_blog_mirror": {
+        "type": "blog",
+        "defaults": {
+            "image": {
+                "width": "325",
+                "height": "270",
+                "resolution": "75"
+            }
+        }
+    }
+}

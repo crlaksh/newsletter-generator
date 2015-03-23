@@ -28,7 +28,7 @@
                         <tr class="block_{{blockIndex + 1}}">
                             <td>
                                 {% set data = block["data"] %}
-                                {% include block["type"] %}
+                                {% include block["type"]~'.twig' %}
                             </td>
                         </tr>
                         <tr>
