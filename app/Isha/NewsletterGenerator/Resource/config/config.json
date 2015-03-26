@@ -31,7 +31,7 @@
         "defaults": {
             "image": {
                 "width": "325",
-                "height": "222",
+                "height": "233",
                 "resolution": "75"
             }
         }

@@ -27,7 +27,7 @@ class Helper {
     public static function getHtml($url) {
         $content = Self::downloadWebPage($url);
         $doc = new DOMDocument();
-        $doc->loadHTML($content);
+        @$doc->loadHTML($content);
         $xpath = new DOMXpath($doc);
         return $xpath;
     }
@@ -41,8 +41,8 @@ class Helper {
     public static function resizeImage(
         $originalImage,
         $modifiedImage,
-        $new_w,
-        $new_h,
+        $new_w = FALSE,
+        $new_h = FALSE,
         $resolution = 75,
         $noscale = FALSE
     ) {
@@ -58,6 +58,12 @@ class Helper {
         }
         $old_x = imageSX($src_img);
         $old_y = imageSY($src_img);
+        if (!$new_w) {
+            $new_w = $old_x;
+        }
+        if (!$new_h) {
+            $new_h = $old_y;
+        }
         if ($noscale) {
             $thumb_w = $new_w;
             $thumb_h = $new_h;
@@ -150,28 +156,38 @@ class Helper {
     }
 
     public static function embedImage(
-        $outFile,
-        $image, $embedImage,
-        $x, $y
+        $image, $outFile, $embedImage
     ) {
         $png = imagecreatefrompng($embedImage);
         $jpeg = imagecreatefromjpeg($image);
         list($width, $height) = getimagesize($image);
         list($newwidth, $newheight) = getimagesize($embedImage);
+        $x = ($width / 2) - ($newwidth / 2);
+        $y = ($height / 2) - ($newheight / 2);
         $outFile = imagecreatetruecolor($width, $height);
         imagecopyresampled($outFile, $jpeg, 0, 0, 0, 0, $width, $height, $width, $height);
         imagecopyresampled($outFile, $png, $x, $y, 0, 0, $newwidth, $newheight, $newwidth, $newheight);
-        imagejpeg($outFile, $image, 100);
-        imagedestroy($image);
+        imagejpeg($outFile, $image, 80);
+        imagedestroy($outFile);
     }
 
     public static function cropImage(
-        $outFile, $imageSrc,
+        $imageSrc, $outFile,
         $x, $y, $width, $height
     ) {
+        list($originalWidth, $originalHeight) = getimagesize($imageSrc);
+        $x = $x !== "" ? $x : 0;
+        $y = $y !== "" ? $y : 0;
+        $width = $width !== "" ? $width : $originalWidth;
+        $height = $height !== "" ? $height : $originalHeight;
         $image = imagecreatefromjpeg($imageSrc);
-        $image = imagecrop($image, array('x' => 140, 'y' => 0, 'width' => 1000, 'height'=> 720));
-        imagejpeg($image, $outFile, 100);
+        $image = imagecrop($image, array(
+            'x' => $x,
+            'y' => $y,
+            'width' => $width,
+            'height'=> $height
+        ));
+        imagejpeg($image, $outFile, 80);
         imagedestroy($image);
     }
 
