@@ -1,5 +1,5 @@
 {% if data['media']['duration'] %}
-<div class="video_title" style="background-color: #1E1E1E; padding: 9px 10px 4px 9px; height: 18px; color: #DDD; font-size: 9px;">
+<div class="video_title" style="background-color: #1E1E1E; padding: 7px 6px 0px 8px; height: 19px; color: #DDD; font-size: 9px;">
     <a href="{{data['url']}}{% include 'utm_param.twig' %}" style="text-decoration: none; color: #DDD;" target="_blank" title="{{data['title']}}">
         {{data['title']}}
     </a>
@@ -9,7 +9,7 @@
     <img src="{{data['media']['image']['url']}}" alt="{{data['title']}}" title="{{data['title']}}" border="0" style="float: left; display: block;" width="100%" height="{{data['media']['image']['height']}}" />
 </a>
 {% if data['media']['duration'] %}
-<table width="100%" bgcolor="#1E1E1E" border="0" cellpadding="0" cellspacing="0" style="padding: 2px 5px 2px 5px; font-size: 10px;height: 18px;vertical-align: middle; color: #7F7F7F;">
+<table width="100%" bgcolor="#1E1E1E" border="0" cellpadding="0" cellspacing="0" style="padding: 0 5px 0 5px; font-size: 10px; height: 26px; vertical-align: middle; color: #7F7F7F;">
     <tr>
         <td width="5%" valign="middle">
             <a href="{{data['url']}}{% include 'utm_param.twig' %}" style="text-decoration: none; color: #7F7F7F;" target="_blank" title="{{data['title']}}">
@@ -18,16 +18,8 @@
         </td>
         <td width="4%" valign="middle">
             <a href="{{data['url']}}{% include 'utm_param.twig' %}" style="text-decoration: none; color: #7F7F7F;" target="_blank" title="{{data['title']}}">
-            <span style="float: left; width: 3px; border: 4px solid transparent; border-right-color: #7F7F7F; background: transparent;">
-                <span style="float: left; width: 5px; height: 6px;background-color:#7F7F7F;"></span>
-            </span>
+                <img src="http://www.ishafoundation.org/mail/app/index.php?/public/file/view/ry/sn" alt="Volume" width="15" height="14" alt="YouTube" style="padding-top: 1px;" />
             </a>
-        </td>
-        <td width="1%" style="font-family: Georgia;font-size: 5px; height:20px; font-weight: bold; cursor: default" valign="middle" align="right">
-            )
-        </td>
-        <td width="1%" style="font-family: Georgia;font-size: 12px; height:20px;padding-top: 5px; cursor: default" valign="top" align="left">
-            )
         </td>
         {% set duration = data['media']['duration']|split(':') %}
         <td width="15%" align="right" style="color: #EEE; font-family: Georgia; font-size: 11px;">

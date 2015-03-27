@@ -85,7 +85,7 @@ class Helper {
         $dst_img = ImageCreateTrueColor($thumb_w, $thumb_h);
         imagecopyresampled($dst_img, $src_img, 0, 0, 0, 0, $thumb_w, $thumb_h, $old_x, $old_y);
         if (preg_match("/png|PNG/", $system[1])) {
-            imagepng($dst_img, $modifiedImage, $resolution);
+            imagepng($dst_img, $modifiedImage, $resolution * (9 / 100));
         }
         else if (preg_match("/gif|GIF/", $system[1])) {
             imagegif($dst_img, $modifiedImage, $resolution);
