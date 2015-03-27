@@ -20,9 +20,9 @@
         "type": "blog",
         "defaults": {
             "image": {
-                "width": "650",
-                "height": "433",
-                "resolution": "75"
+                "width": 650,
+                "height": 433,
+                "resolution": 75
             }
         }
     },
@@ -30,9 +30,9 @@
         "type": "blog",
         "defaults": {
             "image": {
-                "width": "325",
-                "height": "233",
-                "resolution": "75"
+                "width": 325,
+                "height": 233,
+                "resolution": 75
             }
         }
     },
@@ -40,9 +40,9 @@
         "type": "blog",
         "defaults": {
             "image": {
-                "width": "325",
-                "height": "270",
-                "resolution": "75"
+                "width": 325,
+                "height": 270,
+                "resolution": 75
             }
         }
     },
@@ -50,9 +50,9 @@
         "type": "blog",
         "defaults": {
             "image": {
-                "width": "325",
-                "height": "270",
-                "resolution": "75"
+                "width": 325,
+                "height": 270,
+                "resolution": 75
             }
         }
     }

@@ -35,16 +35,17 @@ class ContentGenerator extends Helper {
     }
 
     public function fillBlockData($blockType, $data, $newsletterPath, $config) {
+        $url = $data['url'];
+        $title = preg_replace("/http:\/\/tamilblog.ishafoundation.org\/(.*)\//", "$1", $url);
+        $imageSrc = FALSE;
+        $imageNewsletterDest = FALSE;
         if ((
                 ($data['title'] === "") ||
                 ($data['blurb'] === "") ||
                 ($data['media']['image']['url'] === "")
             ) && in_array($blockType, $config['blogs'])
         ) {
-            $url = $data['url'];
             $html = Helper::getHtml($url);
-            $title = preg_replace("/http:\/\/tamilblog.ishafoundation.org\/(.*)\//", "$1", $url);
-            $imageSrc = FALSE;
             if ($data['title'] === "") {
                 $data['title'] = Helper::getElementTextContent($html, $config['blog_data']['title_element']);
             }
@@ -54,67 +55,70 @@ class ContentGenerator extends Helper {
             if ($data['media']['image']['url'] === "") {
                 $data['media']['type'] = 'image';
                 $imageSrc = Helper::getElementAttribute($html, $config['blog_data']['image_element'], 'src');
-            }
-            $videoSrc = Helper::getElementAttribute($html, $config['blog_data']['video_element'], 'src');
-            if (!$imageSrc) {
-                $data['media']['type'] = 'video';
-                $videoId = $this->getVideoId($videoSrc);
-                $imageSrc = $this->getVideoImage($videoId, $config['blog_data']['video_image_link']);
-                $data['media']['duration'] = $this->getVideoDuration($videoId, $config['blog_data']['video_gdata_link']);
-            }
-            if ($data['media']['image']['url'] === "") {
+                if (!$imageSrc) {
+                    $data['media']['type'] = 'video';
+                    $videoSrc = Helper::getElementAttribute($html, $config['blog_data']['video_element'], 'src');
+                    $videoId = $this->getVideoId($videoSrc);
+                    $imageSrc = $this->getVideoImage($videoId, $config['blog_data']['video_image_link']);
+                    if ($data['media']['duration'] === "") {
+                        $data['media']['duration'] = $this->getVideoDuration($videoId, $config['blog_data']['video_gdata_link']);
+                    }
+                }
                 $imageFileExtension =  "." . pathinfo($imageSrc, PATHINFO_EXTENSION);
                 $imageFileName = $title . $imageFileExtension;
                 $imageNewsletterLink = $config['images_path'] . $imageFileName;
-                $imageDownloadDest = $newsletterPath . $config['original_images_path'] . $imageFileName;
                 $imageNewsletterDest = $newsletterPath . $config['images_path'] . $imageFileName;
+                $imageDownloadDest = $newsletterPath . $config['original_images_path'] . $imageFileName;
                 Helper::downloadImage($imageSrc, $imageDownloadDest);
-                $imageDest = $imageDownloadDest;
-                if (
-                    $data['media']['image']['crop_x'] !== "" ||
-                    $data['media']['image']['crop_y'] !== "" ||
-                    $data['media']['image']['crop_width'] !== "" ||
-                    $data['media']['image']['crop_height'] !== ""
-                ) {
-                    Helper::cropImage(
-                        $imageDownloadDest,
-                        $imageNewsletterDest,
-                        $data['media']['image']['crop_x'],
-                        $data['media']['image']['crop_y'],
-                        $data['media']['image']['crop_width'],
-                        $data['media']['image']['crop_height']
-                    );
-                    $imageDest = $imageNewsletterDest;
-                }
-                Helper::resizeImage(
-                    $imageDest,
-                    $imageNewsletterDest,
-                    $data['media']['image']['width'],
-                    $data['media']['image']['height'],
-                    $data['media']['image']['resolution'],
-                    TRUE
-                );
-                $imageDest = $imageNewsletterDest;
-                if ($data['media']['type'] === 'video') {
-                    Helper::embedImage(
-                        $imageDest,
-                        $imageNewsletterDest,
-                        $config['blog_data']['youtube_icon']
-                    );
-                    $imageDest = $imageNewsletterDest;
-                }
+                copy($imageDownloadDest, $imageNewsletterDest);
                 $data['media']['image']['url'] = $imageNewsletterLink;
             }
+        }
+        if (
+            $data['media']['image']['url'] !== "" &&
+            preg_match('/^http/i', $data['media']['image']['url']) !== 1
+        ) {
+            $imageSrc = $data['media']['image']['url'];
+            $imageFileExtension =  "." . pathinfo($imageSrc, PATHINFO_EXTENSION);
+            $imageFileName = $title . $imageFileExtension;
+            $imageNewsletterLink = $config['images_path'] . $imageFileName;
+            $imageNewsletterDest = $newsletterPath . $config['images_path'] . $imageFileName;
+            $imageDownloadDest = $newsletterPath . $config['original_images_path'] . $imageFileName;
+            copy($imageSrc, $imageNewsletterDest);
+        }
+        if ($imageNewsletterDest) {
             if (
-                ($data['media']['duration'] === "") &&
-                (
-                    $data['media']['type'] === "video" ||
-                    ($data['media']['type'] === "" && $videoSrc !== "")
-                )
+                $data['media']['image']['crop_x'] !== "" ||
+                $data['media']['image']['crop_y'] !== "" ||
+                $data['media']['image']['crop_width'] !== "" ||
+                $data['media']['image']['crop_height'] !== ""
             ) {
-                $data['media']['type'] = 'video';
-                $videoId = $this->getVideoId($videoSrc);
-                $data['media']['duration'] = $this->getVideoDuration($videoId, $config['blog_data']['video_gdata_link']);
+                Helper::cropImage(
+                    $imageNewsletterDest,
+                    $imageNewsletterDest,
+                    $data['media']['image']['crop_x'],
+                    $data['media']['image']['crop_y'],
+                    $data['media']['image']['crop_width'],
+                    $data['media']['image']['crop_height']
+                );
+            }
+            $data['media']['image']['width'] = $data['media']['image']['width'] !== "" ? $data['media']['image']['width'] : $config[$data['type']]['defaults']['image']['width'];
+            $data['media']['image']['height'] = $data['media']['image']['height'] !== "" ? $data['media']['image']['height'] : $config[$data['type']]['defaults']['image']['height'];
+            $data['media']['image']['resolution'] = $data['media']['image']['resolution'] !== "" ? $data['media']['image']['resolution'] : $config[$data['type']]['defaults']['image']['resolution'];
+            Helper::resizeImage(
+                $imageNewsletterDest,
+                $imageNewsletterDest,
+                $data['media']['image']['width'],
+                $data['media']['image']['height'],
+                $data['media']['image']['resolution'],
+                TRUE
+            );
+            if ($data['media']['type'] === 'video') {
+                Helper::embedImage(
+                    $imageNewsletterDest,
+                    $imageNewsletterDest,
+                    $config['blog_data']['youtube_icon']
+                );
             }
         }
         return $data;
