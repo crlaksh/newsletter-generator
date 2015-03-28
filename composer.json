@@ -1,6 +1,7 @@
 {
     "require": {
-        "twig/twig": "~1.0"
+        "twig/twig": "~1.0",
+        "php-excel-reader/spreadsheet-reader": "dev-master"
     },
     "autoload": {
         "psr-0": {

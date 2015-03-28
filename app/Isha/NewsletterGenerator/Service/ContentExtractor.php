@@ -7,57 +7,111 @@ use DOMXpath;
 
 class ContentExtractor extends Helper {
 
-    public static function getBlogContent($newsletterPath, $url, $image, $imagePath, $titleElement, $imageElement, $videoElement, $blurbElement, $videoImagePathTmpl, $videoGDataPathTmpl) {
-        $newsletterImagePath = $newsletterPath . $imagePath;
-        $imageFileName = preg_replace("/http:\/\/tamilblog.ishafoundation.org\/(.*)\//", "$1", $url);
-        $newsletterImageFileName = $newsletterImagePath . $imageFileName;
-        $content = Helper::downloadWebPage($url);
-        $doc = new DOMDocument();
-        $doc->loadHTML($content);
-        $xpath = new DOMXpath($doc);
-        $title = $xpath->query($titleElement)->item(0)->textContent;
-        $blurb = $xpath->query($blurbElement)->item(0)->textContent;
-        $title = utf8_decode($title);
-        $blurb = utf8_decode($blurb);
-        $minutes = FALSE;
+    public function getData($dataFile) {
+        return Helper::getExcelData($dataFile);
+    }
 
-        if ($image['file'] === "none") {
-            $imageNode = $xpath->query($imageElement);
-            if ($imageNode && $imageNode->item(0)) {
-                $imagesrc = $imageNode->item(0)->getAttribute('src');
-            }
-            else {
-                $videoNode = $xpath->query($videoElement);
-                if ($videoNode) {
-                    $videoSrc = $videoNode->item(0)->getAttribute('src');
-                    $videoId = preg_replace("/http\:\/\/www\.youtube\.com\/embed\/(.*)\?feature\=oembed/", "$1", $videoSrc);
-                    $imagesrc = sprintf($videoImagePathTmpl, $videoId);
-                    $gdataPath = sprintf($videoGDataPathTmpl, $videoId);
-                    $gdataString = Helper::downloadWebPage($videoGDataPathTmpl);
-                    $gdata = json_decode($gdataString);
-                    $seconds = $gdata['entry']['media\$group']['yt\$duration']['seconds'];
-                    $minutes = round($seconds / 60, 2);
+    public function getDetailsFromData($data) {
+        $details = array();
+        foreach ($data as $sheetdata) {
+            if (strtolower($sheetdata['sheetname']) === 'details') {
+                array_shift($sheetdata['rows']); // Removing Title Row
+                $rows = $sheetdata['rows'];
+                foreach ($rows as $row) {
+                    $key = implode(
+                        '_', explode(' ', strtolower($row[0]))
+                    );
+                    $value = $row[1];
+                    $details[$key] = $value;
                 }
             }
-            $imageFileExtension =  "." . pathinfo($imagesrc, PATHINFO_EXTENSION);
-            $newsletterImageFile = $newsletterImageFileName . $imageFileExtension;
-            file_put_contents($newsletterImageFile, Helper::downloadWebPage($imagesrc));
         }
-        else {
-            copy($image['file'], $newsletterImageFile);
+        $this->validateExcelDetailsData($details);
+        return $details;
+    }
+
+    public function getBlocksFromData($data) {
+        $blocks = array();
+        $block = array();
+        foreach ($data as $value) {
+            if (strtolower($value['sheetname']) === 'blocks') {
+                $rows = $value['rows'];
+                array_shift($rows); // Removing Title Row
+                $rowCount = count($rows);
+                for ($key = 0; $key < $rowCount; $key++) {
+                    $row = $rows[$key];
+                    if (implode('', $row) !== '') {
+                        $block['type'] = $row[0];
+                        $block['data'] = $this->getBlockData($row);
+                        if ($block['type'] === "") {
+                            $block['type'] = $blocks[$key - 1]['type'];
+                            $this->validateExcelBlockData($block);
+                            array_push($blocks[$key - 1]['data'], $block['data'][0]);
+                        }
+                        else {
+                            $this->validateExcelBlockData($block);
+                            array_push($blocks, $block);
+                        }
+                    }
+                }
+            }
         }
+        if (!isset($blocks) || count($blocks) === 0) {
+            echo "\nBlocks not found\n\n";
+            exit;
+        }
+        return $blocks;
+    }
 
-        Helper::resizeImage($newsletterImageFile, $newsletterImageFile, $image['width'], $image['height'], $image['resolution'], TRUE);
+    function getBlockData($row) {
+        return [[
+            "title" => $row[1],
+            "blurb" => $row[2],
+            "url" => $row[3],
+            "media" => [
+                "type" => $row[4],
+                "duration" => $row[5],
+                "image" => [
+                    "url" => $row[6],
+                    "width" => $row[7],
+                    "height" => $row[8],
+                    "resolution" => $row[9],
+                    "crop_x" => $row[10],
+                    "crop_y" => $row[11],
+                    "crop_width" => $row[12],
+                    "crop_height" => $row[13]
+                ]
+            ]
+        ]];
+    }
 
-        $blogInfo = array(
-            "url" => $url,
-            "image" => $imageFileName . $imageFileExtension,
-            "title" => $title,
-            "blurb" => $blurb,
-            "time" => $minutes
-        );
+    function validateExcelDetailsData($details) {
+        if (!isset($details) || count($details) === 0) {
+            echo "\nDetails not found\n\n";
+            exit;
+        }
+        if (!isset($details['utm_source'])) {
+            echo "\nutm_source not found in Details\n\n";
+            exit;
+        }
+        if (!isset($details['utm_medium'])) {
+            echo "\utm_medium not found in Details\n\n";
+            exit;
+        }
+        if (!isset($details['utm_campaign'])) {
+            echo "\nutm_campaign not found in Details\n\n";
+            exit;
+        }
+    }
 
-        return $blogInfo;
+    function validateExcelBlockData($block) {
+        if (
+            in_array($block['type'], array("single_blog", "double_blog", "split_blog", "split_blog_mirror")) &&
+            $block['data'][0]['url'] === ""
+        ) {
+            echo "\nURL missing for a block\n\n";
+            exit;
+        }
     }
 
 }

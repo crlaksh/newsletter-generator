@@ -1,0 +1,39 @@
+{% if data['media']['duration'] %}
+<div class="video_title" style="background-color: #1E1E1E; padding: 7px 6px 0px 8px; height: 19px; color: #DDD; font-size: 9px;">
+    <a href="{{data['url']}}{% include 'utm_param.twig' %}" style="text-decoration: none; color: #DDD;" target="_blank">
+        {{data['title']}}
+    </a>
+</div>
+{% endif %}
+<a href="{{data['url']}}{% include 'utm_param.twig' %}" style="text-decoration: none; color: #7c7c7c;" target="_blank" title="{{data['title']}}">
+    <img src="{{data['media']['image']['url']}}" alt="{{data['title']}}" title="{{data['title']}}" border="0" style="float: left; display: block;" width="100%" height="{{data['media']['image']['height']}}" />
+</a>
+{% if data['media']['duration'] %}
+<table width="100%" bgcolor="#1E1E1E" border="0" cellpadding="0" cellspacing="0" style="padding: 0 5px 0 5px;  font-family: Georgia; font-size: 11px; height: 26px; vertical-align: middle; color: #7F7F7F;">
+    <tr>
+        <td width="5%" valign="middle">
+            <a href="{{data['url']}}{% include 'utm_param.twig' %}" style="text-decoration: none; color: #7F7F7F;" target="_blank" title="{{data['title']}}">
+                <span style="display: inline-block;float: left; width: 0px; height: 0px;  margin-left: 12px; margin-right: 16px; border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-left: 10px solid #7F7F7F; z-index: 2; transition: all .3s;"></span>
+            </a>
+        </td>
+        <td width="4%" valign="middle">
+            <a href="{{data['url']}}{% include 'utm_param.twig' %}" style="text-decoration: none; color: #7F7F7F;" target="_blank" title="{{data['title']}}">
+                <img src="http://www.ishafoundation.org/mail/app/index.php?/public/file/view/ry/sn" alt="Volume" width="15" height="14" alt="YouTube" style="padding-top: 1px;" />
+            </a>
+        </td>
+        {% set duration = data['media']['duration']|split(':') %}
+        <td width="15%" align="right" style="color: #EEE; font-family: Georgia; font-size: 11px;">
+            00:00{% if duration[0] != "00" %}:00{% endif %}
+        </td>
+        <td width="15%" align="left" style="color:#7F7F7F;font-family: Georgia; font-size: 11px;">
+             &nbsp;/&nbsp;{% if duration[0] != "00" %}{{duration[0]}}:{% endif %}{{duration[1]}}:{{duration[2]}}
+        </td>
+        <td align="right">
+            <a href="{{data['url']}}{% include 'utm_param.twig' %}" style="text-decoration: none; color: #7c7c7c;" target="_blank" title="{{data['title']}}">
+                <img src="http://www.ishafoundation.org/mail/app/index.php?/public/file/view/ry/se" alt="YouTube" />
+            </a>
+        </td>
+        <td></td>
+    </tr>
+</table>
+{% endif %}

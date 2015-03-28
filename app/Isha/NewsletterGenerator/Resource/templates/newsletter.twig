@@ -1,0 +1,51 @@
+{% autoescape false %}
+{% set language = details['language'] %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>{{details['title']}}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <style>
+            @font-face {
+                font-family: Latha;
+                src: url(Latha.ttf);
+            }
+        </style>
+    </head>
+    <body style="margin: 0; padding: 0;">
+        <table class="body" align="center" width="100%" bgcolor="#e5e2d6" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+                    <table class="contentArea" align="center" width="650px" border="0" cellpadding="0" cellspacing="0" style="color: #444444; font-family:  Latha, Inaimathi, Georgia; font-size: 11px; margin-bottom: 20px; cursor: default;">
+                        <tr class="alternateView">
+                            <td style="font-family: Arial, Helvetica, sans-serif; text-align: right; padding-top: 18px; padding-bottom: 21px;" valign="top"><a href="%Link:WebBrowser%" style="color: #909090; text-decoration: none;" target="_blank">Can't view Email?</a></td>
+                        </tr>
+                        {% for blockIndex, block in blocks %}
+                        <tr class="block_{{blockIndex + 1}}">
+                            <td>
+                                {% set data = block["data"] %}
+                                {% include block["type"]~'.twig' %}
+                            </td>
+                        </tr>
+                        {%if block["type"] != 'header' %}
+                        <tr>
+                            <td>
+                                <div class="block_shadow" style="height: 4px; background-color: #CCC7B0; margin-left: 4px;"></div>
+                                <div class="median" style="margin-bottom: 20px;"></div>
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                        <tr>
+                            <td>
+                                {% include 'footer.twig' %}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
+{% endautoescape %}

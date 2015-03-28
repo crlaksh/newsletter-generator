@@ -1,0 +1,29 @@
+{% set data_left = data[0] %}
+{% set data_right = data[1] %}
+{% set title_align = 'left' %}
+<table class="double_blog" width="100%" bgcolor="white" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td class="blog_left image" valign="top" width="50%">
+            {% set data = data_left %}
+            {% include 'blog_image.twig' %}
+        </td>
+        <td class="blog_right image" valign="top">
+            {% set data = data_right %}
+            {% include 'blog_image.twig' %}
+        </td>
+    </tr>
+    <tr>
+        <td class="blog_left content" valign="top">
+            {% set data = data_left %}
+            {% include 'blog_title.twig' %}
+            {% include 'blog_blurb.twig' %}
+            {% include 'blog_readmore.twig' %}
+        </td>
+        <td class="blog_right content" valign="top">
+            {% set data = data_right %}
+            {% include 'blog_title.twig' %}
+            {% include 'blog_blurb.twig' %}
+            {% include 'blog_readmore.twig' %}
+        </td>
+    </tr>
+</table>

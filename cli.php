@@ -2,28 +2,30 @@
 
 require_once 'vendor/autoload.php';
 use Isha\NewsletterGenerator\Util\Config as Config;
+use Isha\NewsletterGenerator\Util\CLI as CLI;
 use Isha\NewsletterGenerator\Util\Helper as Helper;
 use Isha\NewsletterGenerator\Service\ContentExtractor as ContentExtractor;
 use Isha\NewsletterGenerator\Service\ContentGenerator as ContentGenerator;
 
 $config = Config::getConfig();
 
-$newsletterPath = $config['data_path'] . $config['newsletter_title'] . "_" . $config['date'] . "_" . $config['year'] . "/";
-$newsletterFilename = $newsletterPath . $config['newsletter_title'] . "_" . $config['date'] . "_" . $config['year'] . ".html";
+$cli = new CLI($argv);
+$dataFile = $cli->get($argv, 'data');
 
-mkdir($newsletterPath . $config['images_path'], 0777, TRUE);
+$contentExtractor = new ContentExtractor();
+$inputData = $contentExtractor->getData($dataFile);
+$newsletterData['details'] = $contentExtractor->getDetailsFromData($inputData);
+$newsletterData['blocks'] = $contentExtractor->getBlocksFromData($inputData);
 
-$blogData = $config['blog_data'];
-$blogs = $blogData['blogs'];
+$contentGenerator = new ContentGenerator();
+$newsletterFileNameSource = $newsletterData['details']['utm_campaign'];
 
-foreach ($blogs as $key => $blog) {
-    $config['blog_data']['blogs'][$key] = ContentExtractor::getBlogContent(
-        $newsletterPath, $config['blog_data']['blogs'][$key]['url'], $config['blog_data']['blogs'][$key]['image'],
-        $config['images_path'], $blogData['title_element'], $blogData['image_element'], $blogData['video_element'],
-        $blogData['blurb_element'], $blogData['video_image_link'], $blogData['video_gdata_link']
-    );
-}
+$newsletterFile = $contentGenerator->getNewsletterFilename($newsletterFileNameSource, $config);
+$newsletterPath = dirname($newsletterFile) . '/';
+$newsletterData['blocks'] = $contentGenerator->fillBlocksData($newsletterData['blocks'], $newsletterPath, $config);
 
-ContentGenerator::execute($config['newsletter_template'], $config, $newsletterFilename);
+Helper::createDirectories(array($newsletterPath . $config['original_images_path']));
+
+$contentGenerator->execute($config['newsletter_template'], $newsletterData, $newsletterFile);
 
 ?>
