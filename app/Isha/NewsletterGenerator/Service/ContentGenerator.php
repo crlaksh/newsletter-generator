@@ -15,6 +15,7 @@ class ContentGenerator extends Helper {
     }
 
     public function getNewsletterFilename($fileName, $config) {
+        $fileName = implode('_', explode(' ', $fileName));
         $dir = $config['data_path'] . $fileName . "/";
         $file = $dir . $fileName . ".html";
         return $file;
