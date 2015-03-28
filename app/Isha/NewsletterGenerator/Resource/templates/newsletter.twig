@@ -1,14 +1,15 @@
 {% autoescape false %}
+{% set language = details['language'] %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title>ஆனந்த அலை blog - வாரத்தின் டாப் பதிவுகள்</title>
+        <title>{{details['title']}}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width" />
         <style>
             @font-face {
                 font-family: Latha;
-                src: url(../../../backup_data/Latha.ttf);
+                src: url(Latha.ttf);
             }
         </style>
     </head>
@@ -20,11 +21,6 @@
                         <tr class="alternateView">
                             <td style="font-family: Arial, Helvetica, sans-serif; text-align: right; padding-top: 18px; padding-bottom: 21px;" valign="top"><a href="%Link:WebBrowser%" style="color: #909090; text-decoration: none;" target="_blank">Can't view Email?</a></td>
                         </tr>
-                        <tr>
-                            <td>
-                                {% include 'header.twig' %}
-                            </td>
-                        </tr>
                         {% for blockIndex, block in blocks %}
                         <tr class="block_{{blockIndex + 1}}">
                             <td>
@@ -32,12 +28,14 @@
                                 {% include block["type"]~'.twig' %}
                             </td>
                         </tr>
+                        {%if block["type"] != 'header' %}
                         <tr>
                             <td>
                                 <div class="block_shadow" style="height: 4px; background-color: #CCC7B0; margin-left: 4px;"></div>
                                 <div class="median" style="margin-bottom: 20px;"></div>
                             </td>
                         </tr>
+                        {% endif %}
                         {% endfor %}
                         <tr>
                             <td>

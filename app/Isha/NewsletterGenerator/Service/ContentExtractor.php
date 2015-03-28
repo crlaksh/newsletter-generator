@@ -90,16 +90,16 @@ class ContentExtractor extends Helper {
             echo "\nDetails not found\n\n";
             exit;
         }
-        if (!isset($details['newsletter_title'])) {
-            echo "\nNewsletter Title not found in Details\n\n";
+        if (!isset($details['utm_source'])) {
+            echo "\nutm_source not found in Details\n\n";
             exit;
         }
-        if (!isset($details['date'])) {
-            echo "\nDate not found in Details\n\n";
+        if (!isset($details['utm_medium'])) {
+            echo "\utm_medium not found in Details\n\n";
             exit;
         }
-        if (!isset($details['display_date'])) {
-            echo "\nDisplay Date not found in Details\n\n";
+        if (!isset($details['utm_campaign'])) {
+            echo "\nutm_campaign not found in Details\n\n";
             exit;
         }
     }

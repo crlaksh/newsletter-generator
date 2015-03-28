@@ -14,11 +14,9 @@ class ContentGenerator extends Helper {
         file_put_contents($outputFile, $content);
     }
 
-    public function getNewsletterFilename($details, $config) {
-        $newsletterDate = str_replace(' ', '_', $details['date']);
-        $newsletterName = str_replace(' ', '_', $details['newsletter_title']) . "_" . $newsletterDate;
-        $dir = $config['data_path'] . $newsletterName . "/";
-        $file = $dir . $newsletterName . ".html";
+    public function getNewsletterFilename($fileName, $config) {
+        $dir = $config['data_path'] . $fileName . "/";
+        $file = $dir . $fileName . ".html";
         return $file;
     }
 
@@ -27,7 +25,7 @@ class ContentGenerator extends Helper {
             $blockData = $block['data'];
             $blockType = $block['type'];
             foreach ($blockData as $dataIndex => $data) {
-                echo "\nProcessing: [" . $blockType . "]\n" . $data['url'] . "\n\n";
+                echo "Processing: [" . $blockType . "] " . $data['url'] . "\n";
                 $blocks[$key]['data'][$dataIndex] = $this->fillBlockData($blockType, $data, $newsletterPath, $config);
             }
         }

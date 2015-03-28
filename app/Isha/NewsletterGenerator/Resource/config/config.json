@@ -4,7 +4,7 @@
     "newletter_dir": "{{newsletter_name}}",
     "newletter_file": "{{newsletter_name}}.html",
     "original_images_path": "images/original/",
-    "newsletter_template": "app/Isha/NewsletterGenerator/Resource/templates/Tamil_Weekly_Newsletter.twig",
+    "newsletter_template": "app/Isha/NewsletterGenerator/Resource/templates/newsletter.twig",
     "blog_data": {
         "title_element": "//*[contains(@class,'entry-title')]/span",
         "image_element": "//*[contains(@class,'entry-media')]//img",

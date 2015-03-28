@@ -18,7 +18,9 @@ $newsletterData['details'] = $contentExtractor->getDetailsFromData($inputData);
 $newsletterData['blocks'] = $contentExtractor->getBlocksFromData($inputData);
 
 $contentGenerator = new ContentGenerator();
-$newsletterFile = $contentGenerator->getNewsletterFilename($newsletterData['details'], $config);
+$newsletterFileName = $newsletterData['details']['utm_campaign'];
+
+$newsletterFile = $contentGenerator->getNewsletterFilename($newsletterFileName, $config);
 $newsletterPath = dirname($newsletterFile) . '/';
 $newsletterData['blocks'] = $contentGenerator->fillBlocksData($newsletterData['blocks'], $newsletterPath, $config);
 
