@@ -84,6 +84,7 @@ class ContentGenerator extends Helper {
             $imageNewsletterDest = $newsletterPath . $config['images_path'] . $imageFileName;
             $imageDownloadDest = $newsletterPath . $config['original_images_path'] . $imageFileName;
             copy($imageDownloadDest, $imageNewsletterDest);
+            $data['media']['image']['url'] = $imageNewsletterLink;
         }
         if ($imageNewsletterDest) {
             if (
@@ -112,7 +113,10 @@ class ContentGenerator extends Helper {
                 $data['media']['image']['resolution'],
                 TRUE
             );
-            if ($data['media']['type'] === 'video') {
+            if (
+                $data['media']['type'] === 'video' ||
+                $data['media']['duration'] !== ''
+            ) {
                 Helper::embedImage(
                     $imageNewsletterDest,
                     $imageNewsletterDest,
