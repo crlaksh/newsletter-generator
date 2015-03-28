@@ -15,11 +15,15 @@
     <tr>
         <td class="blog_left content" valign="top">
             {% set data = data_left %}
-            {% include 'blog_content.twig' %}
+            {% include 'blog_title.twig' %}
+            {% include 'blog_blurb.twig' %}
+            {% include 'blog_readmore.twig' %}
         </td>
         <td class="blog_right content" valign="top">
             {% set data = data_right %}
-            {% include 'blog_content.twig' %}
+            {% include 'blog_title.twig' %}
+            {% include 'blog_blurb.twig' %}
+            {% include 'blog_readmore.twig' %}
         </td>
     </tr>
 </table>

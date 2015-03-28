@@ -27,7 +27,7 @@ class ContentGenerator extends Helper {
             $blockData = $block['data'];
             $blockType = $block['type'];
             foreach ($blockData as $dataIndex => $data) {
-                echo "\nProcessing: " . $data['url'] . "\n\n";
+                echo "\nProcessing: [" . $blockType . "]\n" . $data['url'] . "\n\n";
                 $blocks[$key]['data'][$dataIndex] = $this->fillBlockData($blockType, $data, $newsletterPath, $config);
             }
         }
