@@ -5,11 +5,6 @@
     "newletter_file": "{{newsletter_name}}.html",
     "original_images_path": "images/original/",
     "newsletter_template": "app/Tools/NewsletterGenerator/Resource/templates/newsletter.twig",
-    "images": {
-        "youtube_icon": "http://www.ishafoundation.org/mail/app/index.php?/public/file/view/ry/se",
-        "volume_icon": "http://www.ishafoundation.org/mail/app/index.php?/public/file/view/ry/sn",
-        "read_more": "http://www.ishafoundation.org/mailmarketer/admin/temp/user/2/melum.gif"
-    },
     "blog_data": {
         "title_element": "//*[contains(@class,'entry-title')]/span",
         "image_element": "//*[contains(@class,'entry-media')]//img",
@@ -20,6 +15,15 @@
         "video_gdata_link": "http://gdata.youtube.com/feeds/api/videos/%s?v=2&alt=json&prettyprint=true"
     },
     "blogs": ["single_blog", "double_blog", "split_blog", "split_blog_mirror"],
+    "blog_image": {
+        "youtube_icon": "http://www.ishafoundation.org/mail/app/index.php?/public/file/view/ry/se",
+        "volume_icon": "http://www.ishafoundation.org/mail/app/index.php?/public/file/view/ry/sn"
+    },
+    "blog_readmore": "http://www.ishafoundation.org/mailmarketer/admin/temp/user/2/melum.gif",
+    "quote": {
+        "quote_image": "http://www.ishafoundation.org/mailmarketer/admin/temp/user/1/quote.png",
+        "signature": "சத்குரு"
+    },
     "single_blog": {
         "no_of_data": 1,
         "type": "blog",
