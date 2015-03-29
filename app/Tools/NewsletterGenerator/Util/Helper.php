@@ -33,7 +33,7 @@ class Helper {
     }
 
     function getHtml($url) {
-        $content = Self::downloadWebPage($url);
+        $content = $this->downloadWebPage($url);
         $doc = new DOMDocument();
         @$doc->loadHTML($content);
         $xpath = new DOMXpath($doc);
@@ -41,8 +41,7 @@ class Helper {
     }
 
     function downloadImage($src, $dest) {
-        // if ()
-        $imageData = Self::downloadWebPage($src);
+        $imageData = $this->downloadWebPage($src);
         file_put_contents($dest, $imageData);
     }
 
