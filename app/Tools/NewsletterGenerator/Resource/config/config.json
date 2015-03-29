@@ -4,12 +4,17 @@
     "newletter_dir": "{{newsletter_name}}",
     "newletter_file": "{{newsletter_name}}.html",
     "original_images_path": "images/original/",
-    "newsletter_template": "app/Isha/NewsletterGenerator/Resource/templates/newsletter.twig",
+    "newsletter_template": "app/Tools/NewsletterGenerator/Resource/templates/newsletter.twig",
+    "images": {
+        "youtube_icon": "http://www.ishafoundation.org/mail/app/index.php?/public/file/view/ry/se",
+        "volume_icon": "http://www.ishafoundation.org/mail/app/index.php?/public/file/view/ry/sn",
+        "read_more": "http://www.ishafoundation.org/mailmarketer/admin/temp/user/2/melum.gif"
+    },
     "blog_data": {
         "title_element": "//*[contains(@class,'entry-title')]/span",
         "image_element": "//*[contains(@class,'entry-media')]//img",
         "video_element": "//*[contains(@class,'entry-media')]//iframe",
-        "youtube_icon": "app/Isha/NewsletterGenerator/Resource/images/youtube.png",
+        "youtube_icon": "app/Tools/NewsletterGenerator/Resource/images/youtube.png",
         "blurb_element": "//*[contains(@class,'entry-content')]/p[following-sibling::div]/strong",
         "video_image_link": "http://img.youtube.com/vi/%s/maxresdefault.jpg",
         "video_gdata_link": "http://gdata.youtube.com/feeds/api/videos/%s?v=2&alt=json&prettyprint=true"

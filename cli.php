@@ -1,31 +1,13 @@
 <?php
 
 require_once 'vendor/autoload.php';
-use Isha\NewsletterGenerator\Util\Config as Config;
-use Isha\NewsletterGenerator\Util\CLI as CLI;
-use Isha\NewsletterGenerator\Util\Helper as Helper;
-use Isha\NewsletterGenerator\Service\ContentExtractor as ContentExtractor;
-use Isha\NewsletterGenerator\Service\ContentGenerator as ContentGenerator;
-
-$config = Config::getConfig();
+use Tools\NewsletterGenerator\Util\CLI as CLI;
+use Tools\NewsletterGenerator\Service\NewsletterGenerator as NewsletterGenerator;
 
 $cli = new CLI($argv);
-$dataFile = $cli->get($argv, 'data');
+$dataFile = $cli->get('data');
 
-$contentExtractor = new ContentExtractor();
-$inputData = $contentExtractor->getData($dataFile);
-$newsletterData['details'] = $contentExtractor->getDetailsFromData($inputData);
-$newsletterData['blocks'] = $contentExtractor->getBlocksFromData($inputData);
-
-$contentGenerator = new ContentGenerator();
-$newsletterFileNameSource = $newsletterData['details']['utm_campaign'];
-
-$newsletterFile = $contentGenerator->getNewsletterFilename($newsletterFileNameSource, $config);
-$newsletterPath = dirname($newsletterFile) . '/';
-$newsletterData['blocks'] = $contentGenerator->fillBlocksData($newsletterData['blocks'], $newsletterPath, $config);
-
-Helper::createDirectories(array($newsletterPath . $config['original_images_path']));
-
-$contentGenerator->execute($config['newsletter_template'], $newsletterData, $newsletterFile);
+$newsletterGenerator = new NewsletterGenerator();
+$newsletterGenerator->execute($dataFile);
 
 ?>

@@ -1,17 +1,15 @@
 <?php
 
-namespace Isha\NewsletterGenerator\Service;
-use Isha\NewsletterGenerator\Util\Helper as Helper;
-use DOMDocument;
-use DOMXpath;
+namespace Tools\NewsletterGenerator\Service;
+use Tools\NewsletterGenerator\Util\Helper as Helper;
 
 class ContentExtractor extends Helper {
 
-    public function getData($dataFile) {
-        return Helper::getExcelData($dataFile);
+    function getData($dataFile) {
+        return $this->getExcelData($dataFile);
     }
 
-    public function getDetailsFromData($data) {
+    function getDetailsFromData($data) {
         $details = array();
         foreach ($data as $sheetdata) {
             if (strtolower($sheetdata['sheetname']) === 'details') {
@@ -30,7 +28,7 @@ class ContentExtractor extends Helper {
         return $details;
     }
 
-    public function getBlocksFromData($data) {
+    function getBlocksFromData($data) {
         $blocks = array();
         $block = array();
         foreach ($data as $value) {

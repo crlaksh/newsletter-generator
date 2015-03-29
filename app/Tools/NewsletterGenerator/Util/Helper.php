@@ -1,14 +1,22 @@
 <?php
 
-namespace Isha\NewsletterGenerator\Util;
+namespace Tools\NewsletterGenerator\Util;
 use \PHPExcelReader\SpreadsheetReader as Reader;
+use Twig_Loader_Filesystem;
+use Twig_Environment;
 use Exception;
 use DOMDocument;
 use DOMXpath;
 
 class Helper {
 
-    public static function downloadWebPage($url) {
+    function getConfig() {
+        $configData = file_get_contents(__DIR__ . "/../Resource/config/config.json");
+        $config = json_decode($configData, TRUE);
+        return $config;
+    }
+
+    function downloadWebPage($url) {
         $ch = curl_init(); // Create a URL handle.
         curl_setopt($ch, CURLOPT_URL, $url); // Tell curl what URL we want.
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // We want to return the web page from curl_exec, not print it.
@@ -24,7 +32,7 @@ class Helper {
         }
     }
 
-    public static function getHtml($url) {
+    function getHtml($url) {
         $content = Self::downloadWebPage($url);
         $doc = new DOMDocument();
         @$doc->loadHTML($content);
@@ -32,13 +40,13 @@ class Helper {
         return $xpath;
     }
 
-    public static function downloadImage($src, $dest) {
+    function downloadImage($src, $dest) {
         // if ()
         $imageData = Self::downloadWebPage($src);
         file_put_contents($dest, $imageData);
     }
 
-    public static function resizeImage(
+    function resizeImage(
         $originalImage,
         $modifiedImage,
         $new_w = FALSE,
@@ -97,36 +105,7 @@ class Helper {
         imagedestroy($src_img);
     }
 
-    public static function getCommandLineArgument($rawInput, $dataType) {
-        $args = array_splice($rawInput, 1);
-        $values = array();
-        foreach ($args as $key => $arg) {
-            $arg = preg_split("/--(.*)=(.*)/", $arg, -1, PREG_SPLIT_DELIM_CAPTURE);
-            if (count($arg) === 4) {
-                $key = $arg[1];
-                $value = $arg[2];
-                if (isset($values[$key])) {
-                    if (is_array($values[$key])) {
-                        array_push($values[$key], $value);
-                    }
-                    else {
-                        $values[$key] = array($values[$key], $value);
-                    }
-                }
-                else {
-                    $values[$key] = $value;
-                }
-            }
-            else if (preg_match("/--(.*)/", $arg[0]) === 1) {
-                $arg = str_replace("--", "", $arg[0]);
-                $values[$arg] = TRUE;
-            }
-        }
-        $data = isset($values['data']) ? $values['data'] : FALSE;
-        return $data;
-    }
-
-    public static function getExcelData($dataFile) {
+    function getExcelData($dataFile) {
         if (!$dataFile) {
             echo "\nData file not specified!!\n\n";
             exit;
@@ -155,7 +134,7 @@ class Helper {
         return $sheets;
     }
 
-    public static function embedImage(
+    function embedImage(
         $image, $outFile, $embedImage
     ) {
         $png = imagecreatefrompng($embedImage);
@@ -171,7 +150,7 @@ class Helper {
         imagedestroy($outFile);
     }
 
-    public static function cropImage(
+    function cropImage(
         $imageSrc, $outFile,
         $x, $y, $width, $height
     ) {
@@ -191,7 +170,7 @@ class Helper {
         imagedestroy($image);
     }
 
-    public static function createDirectories($dirs) {
+    function createDirectories($dirs) {
         foreach ($dirs as $dir) {
             if (!is_dir($dir)) {
                 mkdir($dir, 0777, TRUE);
@@ -199,7 +178,7 @@ class Helper {
         }
     }
 
-    public static function getElementTextContent($html, $xpath) {
+    function getElementTextContent($html, $xpath) {
         $content = "";
         $element = $html->query($xpath);
         if ($element && $element->item(0)) {
@@ -209,7 +188,7 @@ class Helper {
         return $content;
     }
 
-    public static function getElementAttribute($html, $xpath, $attr) {
+    function getElementAttribute($html, $xpath, $attr) {
         $value = "";
         $element = $html->query($xpath);
         if ($element && $element->item(0)) {
@@ -217,6 +196,16 @@ class Helper {
             $value = utf8_decode($value);
         }
         return $value;
+    }
+
+    function renderTemplate($template, $data, $outputFile = FALSE) {
+        $loader = new Twig_Loader_Filesystem(dirname($template));
+        $twig = new Twig_Environment($loader);
+        $content = $twig->render(basename($template), $data);
+        if ($outputFile) {
+            file_put_contents($outputFile, $content);
+        }
+        return $content;
     }
 
 }

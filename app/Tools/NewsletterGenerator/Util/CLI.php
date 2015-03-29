@@ -1,6 +1,6 @@
 <?php
 
-namespace Isha\NewsletterGenerator\Util;
+namespace Tools\NewsletterGenerator\Util;
 
 class CLI {
 
@@ -8,7 +8,7 @@ class CLI {
         $this->args = $args;
     }
 
-    public function get($dataType) {
+    function get($dataType) {
         $rawInput = $this->args;
         $args = array_splice($rawInput, 1);
         $values = array();

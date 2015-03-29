@@ -5,9 +5,9 @@
     },
     "autoload": {
         "psr-0": {
-          "Isha\\NewsletterGenerator\\Service": "app/",
-          "Isha\\NewsletterGenerator\\Command": "app/",
-          "Isha\\NewsletterGenerator\\Util": "app/"
+          "Tools\\NewsletterGenerator\\Service": "app/",
+          "Tools\\NewsletterGenerator\\Command": "app/",
+          "Tools\\NewsletterGenerator\\Util": "app/"
         }
     }
 }

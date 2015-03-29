@@ -18,7 +18,7 @@
         </td>
         <td width="4%" valign="middle">
             <a href="{{data['url']}}{% include 'utm_param.twig' %}" style="text-decoration: none; color: #7F7F7F;" target="_blank" title="{{data['title']}}">
-                <img src="http://www.ishafoundation.org/mail/app/index.php?/public/file/view/ry/sn" alt="Volume" width="15" height="14" alt="YouTube" style="padding-top: 1px;" />
+                <img src="{{config['images']['volume_icon']}}" alt="Volume" width="15" height="14" alt="YouTube" style="padding-top: 1px;" />
             </a>
         </td>
         {% set duration = data['media']['duration']|split(':') %}
@@ -30,7 +30,7 @@
         </td>
         <td align="right">
             <a href="{{data['url']}}{% include 'utm_param.twig' %}" style="text-decoration: none; color: #7c7c7c;" target="_blank" title="{{data['title']}}">
-                <img src="http://www.ishafoundation.org/mail/app/index.php?/public/file/view/ry/se" alt="YouTube" />
+                <img src="{{config['images']['youtube_icon']}}" alt="YouTube" />
             </a>
         </td>
         <td></td>
