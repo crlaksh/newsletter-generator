@@ -212,7 +212,7 @@ class Helper {
         $tidy = new Tidy();
         $options = array(
            'indent' => true,
-           'indent-spaces' => 2,
+           'indent-spaces' => 4,
            'output-xhtml' => true,
            'wrap' => 0,
            'vertical-space' => true
