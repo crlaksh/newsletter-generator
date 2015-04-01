@@ -24,12 +24,13 @@ install_php5() {
     sudo apt-get install php5
 }
 
-install_php5curl() {
+install_php5_libs() {
     sudo apt-get install curl libcurl3 libcurl3-dev php5-curl
+    sudo apt-get install php5-gd
+    sudo apt-get install php5-tidy
 }
 
 install_php5gd() {
-    sudo apt-get install php5-gd
 }
 
 install_composer() {
@@ -42,7 +43,6 @@ run_composer() {
 
 bootstrap
 install_php5
-install_php5curl
-install_php5gd
+install_php5_libs
 install_composer
 run_composer

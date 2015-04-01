@@ -7,6 +7,7 @@ use Twig_Environment;
 use Exception;
 use DOMDocument;
 use DOMXpath;
+use Tidy;
 
 class Helper {
 
@@ -205,6 +206,20 @@ class Helper {
             file_put_contents($outputFile, $content);
         }
         return $content;
+    }
+
+    function tidyHTML($html) {
+        $tidy = new Tidy();
+        $options = array(
+           'indent' => true,
+           'indent-spaces' => 2,
+           'output-xhtml' => true,
+           'wrap' => 0,
+           'vertical-space' => true
+        );
+        $tidy->parseString($html, $options, 'utf8');
+        $tidy->cleanRepair();
+        return $tidy->value;
     }
 
 }

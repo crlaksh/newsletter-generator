@@ -6,7 +6,9 @@ use Tools\NewsletterGenerator\Util\Helper as Helper;
 class ContentGenerator extends Helper {
 
     function execute($newsletterTemplate, $data, $outputFile) {
-        $this->renderTemplate($newsletterTemplate, $data, $outputFile);
+        $html = $this->renderTemplate($newsletterTemplate, $data);
+        $html = $this->tidyHTML($html);
+        file_put_contents($outputFile, $html);
     }
 
     function getNewsletterFilename($fileName, $config) {

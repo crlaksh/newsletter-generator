@@ -1,18 +1,17 @@
+<!-- ####### QUOTE ####### -->
 {% set data = data[0] %}
 <table class="quote" width="100%" bgcolor="white" border="0" cellpadding="0" cellspacing="0">
     <tr>
-        <td class="quote-open-image" align="right" valign="top" width="40">
-            <img src="{{config['quote']['quote_image']}}" alt="Quote" border="0" height="38" width="40" style="padding-top: 20px; color: #7c7c7c;" />
+        <td class="quote-open-image" align="right" valign="top" width="40" style="padding-top: 19px; color: #7c7c7c;">
+            <img src="{{config['quote']['quote_image']}}" alt="Quote" border="0" height="38" width="40" style="color: #7c7c7c;" />
         </td>
-        <td class="quote-text" style="padding-top: 20px; padding-left: 15px; padding-right: 20px; font-style: bold; font-size: 14px; color: black; line-height: 1.6em;" width="610">
-            <a style="color: black; text-decoration: none;" href="{{data['url']}}{% include 'utm_param.twig' %}" target="_blank" title="{{data['title']}}">
+        <td class="quote-text" style="padding-top: 27px; padding-left: 15px; padding-right: 20px; padding-bottom: 15px; font-size: 14px; line-height: 1.6em;" width="610" valign="bottom">
+            <a style="color: #222; text-decoration: none;" href="{{data['url']}}{% include 'utm_param.twig' %}" target="_blank" title="{{data['title']}}">
                 <span class="text">{{data['blurb']}}</span>
             </a>
-        </td>
-    </tr>
-    <tr>
-        <td class="author_signature" align="right" style="padding-bottom: 20px; padding-right: 20px; font-size: 16px; color: #424242; font-weight: bold;" colspan="2">
-            &ndash; <a style="color: #424242; text-decoration: none;" href="{{data['url']}}{% include 'utm_param.twig' %}" title="{{data['title']}}" target="_blank">{{config['quote']['signature']}}</a>
+            <span class="author_signature" style="display: block; font-size: 16px; color: #424242; font-weight: bold; text-align: right;">
+                &ndash; <a style="color: #424242; text-decoration: none;" href="{{data['url']}}{% include 'utm_param.twig' %}" title="{{data['title']}}" target="_blank">{{config['quote']['signature']}}</a>
+            </span>
         </td>
     </tr>
 </table>

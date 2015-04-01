@@ -1,13 +1,14 @@
+<!-- ####### SPLIT BLOG MIRROR ####### -->
 {% set data = data[0] %}
 {% set title_align = 'left' %}
 <table class="split_blog_mirror" width="100%" bgcolor="white" border="0" cellpadding="0" cellspacing="0">
     <tr>
-        <td class="content" valign="top" width="50%">
+        <td class="content" valign="top">
             {% include 'blog_title.twig' %}
             {% include 'blog_blurb.twig' %}
             {% include 'blog_readmore.twig' %}
         </td>
-        <td class="image" valign="top">
+        <td class="image" valign="top" width="50%">
             {% include 'blog_image.twig' %}
         </td>
     </tr>
