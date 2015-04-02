@@ -1,10 +1,10 @@
 {
     "data_path": "data/",
     "images_path": "images/",
-    "newletter_dir": "{{newsletter_name}}",
-    "newletter_file": "{{newsletter_name}}.html",
+    "newsletter_data_file": "data.xls",
     "original_images_path": "images/original/",
     "newsletter_template": "app/Tools/NewsletterGenerator/Resource/templates/newsletter.twig",
+    "newsletter_data_template": "app/Tools/NewsletterGenerator/Resource/templates/newsletter_data.twig",
     "blog_data": {
         "title_element": "//*[contains(@class,'entry-title')]/span",
         "image_element": "//*[contains(@class,'entry-media')]//img",

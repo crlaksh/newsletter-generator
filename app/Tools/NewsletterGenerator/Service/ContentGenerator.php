@@ -11,6 +11,10 @@ class ContentGenerator extends Helper {
         file_put_contents($outputFile, $html);
     }
 
+    function saveNewData($newsletterDataTemplate, $data, $outputFile) {
+        $this->renderTemplate($newsletterDataTemplate, $data, $outputFile);
+    }
+
     function getNewsletterFilename($fileName, $config) {
         $fileName = implode('_', explode(' ', $fileName));
         $dir = $config['data_path'] . $fileName . "/";

@@ -21,11 +21,21 @@ class NewsletterGenerator extends Helper {
 
         $newsletterFile = $contentGenerator->getNewsletterFilename($newsletterFileNameSource, $config);
         $newsletterPath = dirname($newsletterFile) . '/';
-        $newsletterData['blocks'] = $contentGenerator->fillBlocksData($newsletterData['blocks'], $newsletterPath, $config);
+        $newsletterData['blocks'] = $contentGenerator->fillBlocksData(
+            $newsletterData['blocks'], $newsletterPath, $config
+        );
 
         $this->createDirectories(array($newsletterPath . $config['original_images_path']));
 
-        $contentGenerator->execute($config['newsletter_template'], $newsletterData, $newsletterFile);
+        $contentGenerator->execute(
+            $config['newsletter_template'], $newsletterData, $newsletterFile
+        );
+
+        $contentGenerator->saveNewData(
+            $config['newsletter_data_template'],
+            $newsletterData,
+            $newsletterPath . $config['newsletter_data_file']
+        );
     }
 
 }
