@@ -1,0 +1,70 @@
+{% autoescape false %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Newsletter Data</title>
+</head>
+<body>
+<!-- ===================== DETAILS ===================== -->
+<table cellspacing="0" border="0">
+    <tr>
+        <th colspan="2"><h1>Details</h1></th>
+    </tr>
+    <tr>
+        <th>Key</th>
+        <th>Value</th>
+    </tr>
+    {% for detailIndex, detail in details %}
+    <tr>
+        <td>{{detailIndex}}</td>
+        <td>{{detail}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<br>
+<!-- ===================== BLOCKS ===================== -->
+<table cellspacing="0" border="0">
+    <tr>
+        <th colspan="2"><h1>Blocks</h1></th>
+    </tr>
+    <tr>
+        <th>Type</th>
+        <th>Title</th>
+        <th>Blurb|Quote</th>
+        <th>URL</th>
+        <th>Media Type</th>
+        <th>Media Duration</th>
+        <th>Media Image URL</th>
+        <th>Media Image Width</th>
+        <th>Media Image Height</th>
+        <th>Media Image Resolution</th>
+        <th>Media Image Crop X</th>
+        <th>Media Image Crop Y</th>
+        <th>Media Image Crop Width</th>
+        <th>Media Image Crop Height</th>
+    </tr>
+    {% for blockIndex, block in blocks %}
+    {% for blockIndex, data in block['data'] %}
+    <tr>
+        <td>{{block['type']}}</td>
+        <td>{{data['title']}}</td>
+        <td>{{data['blurb']}}</td>
+        <td>{{data['url']}}</td>
+        <td>{{data['media']['type']}}</td>
+        <td>{{data['media']['duration']}}</td>
+        <td>{{data['media']['image']['url']}}</td>
+        <td>{{data['media']['image']['width']}}</td>
+        <td>{{data['media']['image']['height']}}</td>
+        <td>{{data['media']['image']['resolution']}}</td>
+        <td>{{data['media']['image']['crop_x']}}</td>
+        <td>{{data['media']['image']['crop_y']}}</td>
+        <td>{{data['media']['image']['width']}}</td>
+        <td>{{data['media']['image']['height']}}</td>
+    </tr>
+    {% endfor %}
+    {% endfor %}
+</table>
+</body>
+</html>
+{% endautoescape %}
