@@ -1,7 +1,7 @@
 {% if data['media']['duration'] %}
 <!-- <<<<<<< TOP VIDEO PANEL >>>>>>> -->
-<div class="video_title" style="background-color: #1E1E1E; padding: 7px 6px 0px 8px; height: 19px; font-size: 9px;">
-    <a href="{{data['url']}}{% include 'utm_param.twig' %}" style="text-decoration: none; color: #CCC;" target="_blank">
+<div class="video_title" style="background-color: #1E1E1E; padding: 8px 6px 0px 8px; height: 19px; font-size: 9px;">
+    <a href="{{data['url']}}{% include 'utm_param.twig' %}" style="text-decoration: none; color: #DDD;" target="_blank">
         {{data['title']}}
     </a>
 </div>
@@ -9,14 +9,14 @@
 {% endif %}
 <!-- <<<<<<< IMAGE >>>>>>> -->
 <div class="image">
-    <a href="{{data['url']}}{% include 'utm_param.twig' %}" style="text-decoration: none; color: #7c7c7c;" target="_blank" title="{{data['title']}}">
-        <img src="{{data['media']['image']['url']}}" alt="{{data['title']}}" title="{{data['title']}}" border="0" style="float: left; display: block;" width="100%" height="{{data['media']['image']['height']}}" />
+    <a href="{{data['url']}}{% include 'utm_param.twig' %}" style="text-decoration: none; color: inherit;" target="_blank" title="{{data['title']}}">
+        <img src="{{data['media']['image']['url']}}" alt="{{data['title']}}" title="{{data['title']}}" border="0" style="display: block;" width="100%" height="{{data['media']['image']['height']}}" />
     </a>
 </div>
 <!-- >>>>>>> IMAGE <<<<<<< -->
 {% if data['media']['duration'] %}
 <!-- <<<<<<< BOTTOM VIDEO PANEL >>>>>>> -->
-<table width="100%" bgcolor="#1E1E1E" border="0" cellpadding="0" cellspacing="0" style="padding: 0 5px 0 5px; height: 26px; vertical-align: middle; color: #7F7F7F;">
+<table width="100%" bgcolor="#1E1E1E" border="0" cellpadding="0" cellspacing="0" style="padding: 0 5px 0 5px; height: 26px; vertical-align: middle;">
     <tr>
         <td width="5%" valign="middle">
             <a href="{{data['url']}}{% include 'utm_param.twig' %}" style="text-decoration: none;" target="_blank" title="{{data['title']}}">
@@ -24,7 +24,7 @@
             </a>
         </td>
         <td width="4%" valign="middle">
-            <a href="{{data['url']}}{% include 'utm_param.twig' %}" style="text-decoration: none; color: #7c7c7c;" target="_blank" title="{{data['title']}}">
+            <a href="{{data['url']}}{% include 'utm_param.twig' %}" style="text-decoration: none; color: inherit;" target="_blank" title="{{data['title']}}">
                 <img src="{{config['blog_image']['volume_icon']}}" alt="Volume" width="15" height="14" alt="YouTube" style="padding-top: 1px;" />
             </a>
         </td>
@@ -33,7 +33,7 @@
             <span style="color: #DDD;">00:00{% if duration[0] != "00" %}:00{% endif %}</span>&nbsp;/&nbsp;{% if duration[0] != "00" %}{{duration[0]}}:{% endif %}{{duration[1]}}:{{duration[2]}}
         </td>
         <td align="right">
-            <a href="{{data['url']}}{% include 'utm_param.twig' %}" style="text-decoration: none; color: #7c7c7c;" target="_blank" title="{{data['title']}}">
+            <a href="{{data['url']}}{% include 'utm_param.twig' %}" style="text-decoration: none; color: inherit;" target="_blank" title="{{data['title']}}">
                 <img src="{{config['blog_image']['youtube_icon']}}" alt="YouTube" />
             </a>
         </td>

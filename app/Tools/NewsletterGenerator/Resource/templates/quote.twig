@@ -2,10 +2,10 @@
 {% set data = data[0] %}
 <table class="quote" width="100%" bgcolor="white" border="0" cellpadding="0" cellspacing="0">
     <tr>
-        <td class="quote-open-image" align="right" valign="top" width="40" style="padding-top: 19px; color: #7c7c7c;">
-            <img src="{{config['quote']['quote_image']}}" alt="Quote" border="0" height="38" width="40" style="color: #7c7c7c;" />
+        <td class="quote-open-image" align="right" valign="top" width="40" style="padding-top: 21px;">
+            <img src="{{config['quote']['quote_image']}}" alt="Quote" border="0" height="38" width="40" style="color: inherit;" />
         </td>
-        <td class="quote-text" style="padding-top: 27px; padding-left: 15px; padding-right: 20px; padding-bottom: 15px; font-size: 14px; line-height: 1.6em;" width="610" valign="bottom">
+        <td class="quote-text" style="padding: 26px 20px 15px 15px; font-size: 14px; line-height: 1.6em;" width="610" valign="bottom">
             <a style="color: #222; text-decoration: none;" href="{{data['url']}}{% include 'utm_param.twig' %}" target="_blank" title="{{data['title']}}">
                 <span class="text">{{data['blurb']}}</span>
             </a>
