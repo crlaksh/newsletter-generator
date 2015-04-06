@@ -71,7 +71,7 @@ class ContentGenerator extends Helper {
                 $imageDownloadDest = $newsletterPath . $config['original_images_path'] . $imageFileName;
                 $this->downloadImage($imageSrc, $imageDownloadDest);
                 copy($imageDownloadDest, $imageNewsletterDest);
-                $data['media']['image']['url'] = $imageNewsletterLink;
+                $data['media']['image']['url'] = $imageNewsletterDest;
             }
         }
         if (
@@ -80,14 +80,20 @@ class ContentGenerator extends Helper {
         ) {
             $imageSrc = $data['media']['image']['url'];
             $imageFileExtension =  "." . pathinfo($imageSrc, PATHINFO_EXTENSION);
-            $imageFileName = $title . $imageFileExtension;
+            $imageFileName = basename($imageSrc);
             $imageNewsletterLink = $config['images_path'] . $imageFileName;
             $imageNewsletterDest = $newsletterPath . $config['images_path'] . $imageFileName;
             $imageDownloadDest = $newsletterPath . $config['original_images_path'] . $imageFileName;
+            if (is_dir($newsletterPath) === TRUE) {
+                $imageSrc = $imageDownloadDest;
+            }
+            else {
+                copy($imageSrc, $imageDownloadDest);
+            }
             copy($imageDownloadDest, $imageNewsletterDest);
             $data['media']['image']['url'] = $imageNewsletterLink;
         }
-        if ($imageNewsletterDest) {
+        if ($imageNewsletterDest && in_array($blockType, $config['blogs'])) {
             if (
                 $data['media']['image']['crop_x'] !== "" ||
                 $data['media']['image']['crop_y'] !== "" ||
@@ -103,9 +109,9 @@ class ContentGenerator extends Helper {
                     $data['media']['image']['crop_height']
                 );
             }
-            $data['media']['image']['width'] = $data['media']['image']['width'] !== "" ? $data['media']['image']['width'] : $config[$data['type']]['defaults']['image']['width'];
-            $data['media']['image']['height'] = $data['media']['image']['height'] !== "" ? $data['media']['image']['height'] : $config[$data['type']]['defaults']['image']['height'];
-            $data['media']['image']['resolution'] = $data['media']['image']['resolution'] !== "" ? $data['media']['image']['resolution'] : $config[$data['type']]['defaults']['image']['resolution'];
+            $data['media']['image']['width'] = $data['media']['image']['width'] !== "" ? $data['media']['image']['width'] : $config[$blockType]['defaults']['image']['width'];
+            $data['media']['image']['height'] = $data['media']['image']['height'] !== "" ? $data['media']['image']['height'] : $config[$blockType]['defaults']['image']['height'];
+            $data['media']['image']['resolution'] = $data['media']['image']['resolution'] !== "" ? $data['media']['image']['resolution'] : $config[$blockType]['defaults']['image']['resolution'];
             $this->resizeImage(
                 $imageNewsletterDest,
                 $imageNewsletterDest,

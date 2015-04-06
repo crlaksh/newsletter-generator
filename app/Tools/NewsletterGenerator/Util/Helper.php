@@ -183,7 +183,7 @@ class Helper {
         $element = $html->query($xpath);
         if ($element && $element->item(0)) {
             $content = $element->item(0)->textContent;
-            $content = utf8_decode($content);
+            $content = $content;
         }
         return $content;
     }
@@ -193,7 +193,7 @@ class Helper {
         $element = $html->query($xpath);
         if ($element && $element->item(0)) {
             $value = $element->item(0)->getAttribute($attr);
-            $value = utf8_decode($value);
+            $value = $value;
         }
         return $value;
     }
