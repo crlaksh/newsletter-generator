@@ -6,19 +6,13 @@
         <title>{{details['title']}}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width" />
-        <style>
-            @font-face {
-                font-family: Latha;
-                src: url(Latha.ttf);
-            }
-        </style>
     </head>
     <body style="margin: 0; padding: 0; border: 0;">
         <div class="body" align="center" style="margin: 0; padding: 0; border: 0; background-color: #e5e2d6; width: 100%; padding-top: 18px; padding-bottom: 20px;">
             <table class="contentArea" align="center" width="650px" border="0" cellpadding="0" cellspacing="0" style="color: #7c7c7c; font-family:  Arial, Helvetica, sans-serif, Latha, Inaimathi; font-size: 11px; cursor: default;">
                 <tr class="alternateView">
                     <td style="text-align: right; padding-bottom: 21px;" valign="top">
-                        <a href="%Link:WebBrowser%" style="color: inherit; text-decoration: none;" target="_blank">Can't view Email?</a>
+                        <a href="{{details['alternate_link']}}" style="color: inherit; text-decoration: none;" target="_blank">Can't view Email?</a>
                     </td>
                 </tr>
                 {% for blockIndex, block in blocks %}
