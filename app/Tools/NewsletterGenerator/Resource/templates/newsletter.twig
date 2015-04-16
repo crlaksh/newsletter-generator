@@ -11,14 +11,14 @@
         <div class="body" align="center" style="margin: 0; padding: 0; border: 0; background-color: #e5e2d6; width: 100%; padding-top: 18px; padding-bottom: 20px;">
             <table class="contentArea" align="center" width="650px" border="0" cellpadding="0" cellspacing="0" style="color: #7c7c7c; font-family:  Arial, Helvetica, sans-serif, Latha, Inaimathi; font-size: 11px; cursor: default;">
                 <tr class="alternateView">
-                    <td style="text-align: right; padding-bottom: 21px;" valign="top">
+                    <td style="text-align: right; padding-bottom: 21px; color: inherit; font-family: inherit; font-size: inherit; cursor: inherit;" valign="top">
                         <a href="{{details['alternate_link']}}" style="color: inherit; text-decoration: none;" target="_blank">Can't view Email?</a>
                     </td>
                 </tr>
                 {% for blockIndex, block in blocks %}
                 <!-- <<<<<<< ===================== BLOCK {{blockIndex + 1}} BEGINS ===================== >>>>>>> -->
                 <tr class="block_{{blockIndex + 1}}">
-                    <td>
+                    <td style="color: inherit; font-family: inherit; font-size: inherit; cursor: inherit;">
                         {% set data = block["data"] %}
                         {% include block["type"]~'.twig' %}
                     </td>
@@ -26,7 +26,7 @@
                 <!-- >>>>>>> ===================== BLOCK {{blockIndex + 1}} ENDS ===================== <<<<<<< -->
                 {%if block["type"] != 'header' %}
                 <tr>
-                    <td>
+                    <td style="color: inherit; font-family: inherit; font-size: inherit; cursor: inherit;">
                         <div class="block_shadow" style="height: 4px; background-color: #CCC7B0; margin-left: 4px;"></div>
                         <div class="median" style="margin-bottom: 20px;"></div>
                     </td>
@@ -35,7 +35,7 @@
                 {% endfor %}
                 <!-- <<<<<<< ===================== FOOTER BLOCK BEGINS ===================== >>>>>>> -->
                 <tr>
-                    <td>
+                    <td style="color: inherit; font-family: inherit; font-size: inherit; cursor: inherit;">
                         {% include 'footer.twig' %}
                     </td>
                 </tr>

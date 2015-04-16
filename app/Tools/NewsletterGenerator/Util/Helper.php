@@ -150,6 +150,29 @@ class Helper {
         imagedestroy($outFile);
     }
 
+    function drawBottomBorder(&$img, &$color, $thickness = 1) {
+        $x2 = ImageSX($img) - 1;
+        $y2 = ImageSY($img) - 1 + $thickness + $thickness;
+        $x1 = 0;
+        $y1 = $y2 - $thickness;
+
+        for ($i = 0; $i < $thickness; $i++) {
+            imagerectangle($img, $x1++, $y1++, $x2--, $y2--, $color);
+        }
+    }
+
+    function embedText(
+        $image, $outFile, $embedText, $font
+    ) {
+        $jpeg = imagecreatefromjpeg($image);
+        $color = imagecolorallocate($jpeg,  30, 30, 30);
+        $this->drawBottomBorder($jpeg, $color, 26);
+        $textColor = imagecolorallocate($jpeg, 255, 255, 255);
+        imagettftext($jpeg, 8, 0, 5, 15, $textColor, $font, $embedText);
+        imagejpeg($jpeg, $outFile, 100);
+        imagedestroy($jpeg);
+    }
+
     function cropImage(
         $imageSrc, $outFile,
         $x, $y, $width, $height

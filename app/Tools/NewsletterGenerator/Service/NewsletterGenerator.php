@@ -22,7 +22,7 @@ class NewsletterGenerator extends Helper {
         $newsletterFile = $contentGenerator->getNewsletterFilename($newsletterFileNameSource, $config);
         $newsletterPath = dirname($newsletterFile) . '/';
         $newsletterData['blocks'] = $contentGenerator->fillBlocksData(
-            $newsletterData['blocks'], $newsletterPath, $config
+            $newsletterData, $newsletterPath
         );
 
         $this->createDirectories(array($newsletterPath . $config['original_images_path']));

@@ -1,9 +1,9 @@
 <!-- ####### HEADER ####### -->
 {% set data = data[0] %}
 {% set display_date = data['media']['duration']|split(', ') %}
-<table class="header" bgcolor="white" border="0" cellpadding="0" cellspacing="0" style="padding: 30px 20px 30px 25px; height: 71px; color: inherit; font-family:  inherit; font-size: inherit; cursor: inherit;">
+<table class="header" bgcolor="white" border="0" cellpadding="0" cellspacing="0" style="padding: 30px 20px 30px 25px; height: 71px; color: inherit; font-family: inherit; font-size: inherit; cursor: inherit;">
     <tr>
-        <td class="logo" valign="top">
+        <td class="logo" valign="top" style="color: inherit; font-family: inherit; font-size: inherit; cursor: inherit;">
             {% if language == 'tamil' %}
             <a href="http://tamilblog.ishafoundation.org/category/video/video-video/{% include 'utm_param.twig' %}" target="_blank" style="text-decoration: none; color: inherit;">
                 <img src="http://www.ishafoundation.org/mailmarketer/admin/temp/user/2/isha-tamil-logo.png" alt="ஈஷா தமிழ் Logo" style="display: block;" border="0" height="71" width="100" />
@@ -14,10 +14,10 @@
             </a>
             {% endif %}
         </td>
-        <td class="title" style="padding-right: 20px; font-size: 24px; line-height: 1.4em;" align="right" width="385">
+        <td class="title" style="padding-right: 20px; font-size: 24px; line-height: 1.4em; color: inherit; font-family: inherit; cursor: inherit;" align="right" width="385">
             <a style="color:black; text-decoration:none;" href="http://tamilblog.ishafoundation.org/{% include 'utm_param.twig' %}" target="_blank">{{data['title']}}</a> <br /> <span style="font-size: 16px; color: inherit; line-height: 23px;">{{data['blurb']}}</span>
         </td>
-        <td class="display_date" style="background-color: #c46f17; font-size: 18px; color: white; line-height: 1.2em; padding-top: 10px; padding-bottom: 10px;" align="center" width="100">
+        <td class="display_date" style="background-color: #c46f17; font-size: 18px; color: white; line-height: 1.2em; padding-top: 10px; padding-bottom: 10px; font-family: inherit; cursor: inherit;" align="center" width="100">
             <span class="month_and_day">{{display_date[0]}}</span>
             <span class="year" style="font-size: 20px; display: inline-block;">{{display_date[1]}}</span>
         </td>

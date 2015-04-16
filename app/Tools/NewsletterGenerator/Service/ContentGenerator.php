@@ -22,19 +22,24 @@ class ContentGenerator extends Helper {
         return $file;
     }
 
-    function fillBlocksData($blocks, $newsletterPath, $config) {
+    function fillBlocksData($newsletterData, $newsletterPath) {
+        $config = $newsletterData['config'];
+        $details = $newsletterData['details'];
+        $blocks = $newsletterData['blocks'];
         foreach ($blocks as $key => $block) {
             $blockData = $block['data'];
             $blockType = $block['type'];
             foreach ($blockData as $dataIndex => $data) {
                 echo "Processing: [" . $blockType . "] " . $data['url'] . "\n";
-                $blocks[$key]['data'][$dataIndex] = $this->fillBlockData($blockType, $data, $newsletterPath, $config);
+                $blocks[$key]['data'][$dataIndex] = $this->fillBlockData(
+                    $blockType, $data, $newsletterPath, $config, $details
+                );
             }
         }
         return $blocks;
     }
 
-    function fillBlockData($blockType, $data, $newsletterPath, $config) {
+    function fillBlockData($blockType, $data, $newsletterPath, $config, $details) {
         $url = $data['url'];
         $title = preg_replace("/http:\/\/tamilblog.ishafoundation.org\/(.*)\//", "$1", $url);
         $imageSrc = FALSE;
@@ -129,6 +134,12 @@ class ContentGenerator extends Helper {
                     $imageNewsletterDest,
                     $config['blog_data']['youtube_icon']
                 );
+                // $this->embedText(
+                //     $imageNewsletterDest,
+                //     $imageNewsletterDest,
+                //     "00:00 / " . $data['media']['duration'],
+                //     $config['newsletter_english_font']
+                // );
             }
         }
         return $data;

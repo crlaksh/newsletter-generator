@@ -4,6 +4,8 @@
     "newsletter_data_file": "data.xls",
     "original_images_path": "images/original/",
     "newsletter_template": "app/Tools/NewsletterGenerator/Resource/templates/newsletter.twig",
+    "newsletter_english_font": "app/Tools/NewsletterGenerator/Resource/fonts/arial.ttf",
+    "newsletter_tamil_font": "app/Tools/NewsletterGenerator/Resource/fonts/Latha.ttf",
     "newsletter_data_template": "app/Tools/NewsletterGenerator/Resource/templates/newsletter_data.twig",
     "blog_data": {
         "title_element": "//*[contains(@class,'entry-title')]",
