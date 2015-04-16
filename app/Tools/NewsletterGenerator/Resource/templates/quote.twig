@@ -6,11 +6,11 @@
             <img src="{{config['quote']['quote_image']}}" alt="Quote" border="0" height="38" width="40" style="color: inherit;" />
         </td>
         <td class="quote-text" style="padding: 26px 20px 15px 15px; font-size: 14px; line-height: 1.6em; color: inherit; font-family: inherit; cursor: inherit;" width="610" valign="bottom">
-            <a style="color: #222; text-decoration: none;" href="{{data['url']}}{% include 'utm_param.twig' %}" target="_blank" title="{{data['title']}}">
+            <a style="color: #222; text-decoration: none;" href="{{data['url']}}{% if ('?' in data['url']) == true  %}&amp;{% else %}?{% endif %}{% include 'utm_param.twig' %}" target="_blank" title="{{data['title']}}">
                 <span class="text">{{data['blurb']}}</span>
             </a>
             <span class="author_signature" style="display: block; font-size: 16px; color: #424242; font-weight: bold; text-align: right;">
-                &ndash; <a style="color: #424242; text-decoration: none;" href="{{data['url']}}{% include 'utm_param.twig' %}" title="{{data['title']}}" target="_blank">{{config['quote']['signature']}}</a>
+                &ndash; <a style="color: #424242; text-decoration: none;" href="{{data['url']}}{% if ('?' in data['url']) == true  %}&amp;{% else %}?{% endif %}{% include 'utm_param.twig' %}" title="{{data['title']}}" target="_blank">{{config['quote']['signature']}}</a>
             </span>
         </td>
     </tr>
