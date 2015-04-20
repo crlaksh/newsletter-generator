@@ -1,6 +1,6 @@
 {% if data['media']['duration'] %}
 <!-- <<<<<<< TOP VIDEO PANEL >>>>>>> -->
-<div class="video_title" style="background-color: #1E1E1E; padding: 8px 6px 0px 8px; height: 19px; font-size: 9px;">
+<div class="video_title" style="background-color: #1E1E1E; padding: 8px 6px 4px 8px; font-size: 9px;">
     <a href="{{data['url']}}{% if ('?' in data['url']) == true  %}&amp;{% else %}?{% endif %}{% include 'utm_param.twig' %}" style="text-decoration: none; color: #DDD;" target="_blank">
         {{data['title']}}
     </a>

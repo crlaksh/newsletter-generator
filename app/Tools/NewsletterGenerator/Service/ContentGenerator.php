@@ -89,8 +89,10 @@ class ContentGenerator extends Helper {
             $imageNewsletterLink = $config['images_path'] . $imageFileName;
             $imageNewsletterDest = $newsletterPath . $config['images_path'] . $imageFileName;
             $imageDownloadDest = $newsletterPath . $config['original_images_path'] . $imageFileName;
-            if (is_dir($newsletterPath) === TRUE) {
-                $imageSrc = $imageDownloadDest;
+            if (is_dir(dirname($imageSrc)) === TRUE) {
+                if (!is_file($imageSrc) === TRUE) {
+                    $imageSrc = $imageDownloadDest;
+                }
             }
             else {
                 copy($imageSrc, $imageDownloadDest);

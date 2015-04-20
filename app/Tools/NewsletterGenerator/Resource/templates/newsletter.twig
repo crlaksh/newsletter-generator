@@ -19,12 +19,14 @@
                 <!-- <<<<<<< ===================== BLOCK {{blockIndex + 1}} BEGINS ===================== >>>>>>> -->
                 <tr class="block_{{blockIndex + 1}}">
                     <td style="color: inherit; font-family: inherit; font-size: inherit; cursor: inherit;">
+                        {%if block["type"] != 'none' %}
                         {% set data = block["data"] %}
                         {% include block["type"]~'.twig' %}
+                        {% endif %}
                     </td>
                 </tr>
                 <!-- >>>>>>> ===================== BLOCK {{blockIndex + 1}} ENDS ===================== <<<<<<< -->
-                {%if block["type"] != 'header' %}
+                {% if block["type"] != 'header' and block["type"] != 'none'  %}
                 <tr>
                     <td style="color: inherit; font-family: inherit; font-size: inherit; cursor: inherit;">
                         <div class="block_shadow" style="height: 4px; background-color: #CCC7B0; margin-left: 4px;"></div>
