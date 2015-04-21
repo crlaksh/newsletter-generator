@@ -1,6 +1,7 @@
+
 {% if data['media']['duration'] %}
 <!-- <<<<<<< TOP VIDEO PANEL >>>>>>> -->
-<div class="video_title" style="background-color: #1E1E1E; padding: 8px 6px 4px 8px; font-size: 9px;">
+<div class="video_title" style="background-color: #1E1E1E; padding: 8px 6px 4px 8px; min-height: 15px; font-size: 9px;">
     <a href="{{data['url']}}{% if ('?' in data['url']) == true  %}&amp;{% else %}?{% endif %}{% include 'utm_param.twig' %}" style="text-decoration: none; color: #DDD;" target="_blank">
         {{data['title']}}
     </a>
@@ -25,7 +26,7 @@
         </td>
         <td width="4%" valign="middle" style="color: inherit; font-family: inherit; font-size: inherit; cursor: inherit;">
             <a href="{{data['url']}}{% if ('?' in data['url']) == true  %}&amp;{% else %}?{% endif %}{% include 'utm_param.twig' %}" style="text-decoration: none; color: inherit;" target="_blank" title="{{data['title']}}">
-                <img src="{{config['blog_image']['volume_icon']}}" alt="Volume" width="15" height="14" alt="YouTube" style="padding-top: 1px;" />
+                <img src="{{config['blog_image']['volume_icon']}}" alt="Volume" width="15" height="14" alt="YouTube" style="padding-top: 1px; background-color: #1E1E1E;" border="0" />
             </a>
         </td>
         <td width="25%" align="right" style="font-size: 10px; color: inherit; font-family: inherit; cursor: inherit;">
@@ -34,7 +35,7 @@
         </td>
         <td align="right" style="color: inherit; font-family: inherit; font-size: inherit; cursor: inherit;">
             <a href="{{data['url']}}{% if ('?' in data['url']) == true  %}&amp;{% else %}?{% endif %}{% include 'utm_param.twig' %}" style="text-decoration: none; color: inherit;" target="_blank" title="{{data['title']}}">
-                <img src="{{config['blog_image']['youtube_icon']}}" alt="YouTube" />
+                <img src="{{config['blog_image']['youtube_icon']}}" alt="YouTube" style="background-color: #1E1E1E;" border="0" />
             </a>
         </td>
     </tr>
