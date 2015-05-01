@@ -4,9 +4,9 @@
 {% else %}
     {% set readmore = "More" %}
 {% endif %}
-<div class="readMore" style="padding: 13px 20px 23px 20px">
-    <a href="{{data['url']}}{% if ('?' in data['url']) == true  %}&amp;{% else %}?{% endif %}{% include 'utm_param.twig' %}" target="_blank" style="text-decoration: none; color: inherit;" title="{{readmore}}...   {{data['title']}}">
-        <img src="{{config['blog_readmore']}}" alt="{{readmore}}" border="0" height="30" width="76" />
+<div class="readMore" style="padding: 13px 20px 23px 20px; font-size: 16px">
+    <a href="{{data['url']}}{% if ('?' in data['url']) == true  %}&amp;{% else %}?{% endif %}{% include 'utm_param.twig' %}" target="_blank" style="text-decoration: none; color: #7d3705;" title="{{readmore}}...   {{data['title']}}">
+        {{readmore}}
     </a>
 </div>
 <!-- >>>>>>> READMORE <<<<<<< -->

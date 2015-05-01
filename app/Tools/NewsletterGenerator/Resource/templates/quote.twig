@@ -1,17 +1,18 @@
 <!-- ####### QUOTE ####### -->
 {% set data = data[0] %}
-<table class="quote" width="100%" bgcolor="white" border="0" cellpadding="0" cellspacing="0" style="color: inherit; font-family: inherit; font-size: inherit; cursor: inherit;">
+<table class="quote" width="100%" bgcolor="#c46f17" border="0" cellpadding="0" cellspacing="0" style="color: inherit; font-family: inherit; font-size: inherit; cursor: inherit;">
     <tr>
         <td class="quote-open-image" align="right" valign="top" width="40" style="padding-top: 21px; color: inherit; font-family: inherit; font-size: inherit; cursor: inherit;">
             <img src="{{config['quote']['quote_image']}}" alt="Quote" border="0" height="38" width="40" style="color: inherit;" />
         </td>
-        <td class="quote-text" style="padding: 26px 20px 15px 15px; font-size: 14px; line-height: 1.6em; color: inherit; font-family: inherit; cursor: inherit;" width="610" valign="bottom">
-            <a style="color: #222; text-decoration: none;" href="{{data['url']}}{% if ('?' in data['url']) == true  %}&amp;{% else %}?{% endif %}{% include 'utm_param.twig' %}" target="_blank" title="{{data['title']}}">
+        <td class="quote-text" style="padding: 26px 20px 15px 15px; font-size: 18px; line-height: 1.6em; color: inherit; font-family: inherit; cursor: inherit;" width="610" valign="bottom">
+            <a style="color: white; text-decoration: none;" href="{{data['url']}}{% if ('?' in data['url']) == true  %}&amp;{% else %}?{% endif %}{% include 'utm_param.twig' %}" target="_blank" title="{{data['title']}}">
                 <span class="text">{{data['blurb']}}</span>
             </a>
-            <span class="author_signature" style="display: block; font-size: 16px; color: #424242; font-weight: bold; text-align: right;">
-                &ndash; <a style="color: #424242; text-decoration: none;" href="{{data['url']}}{% if ('?' in data['url']) == true  %}&amp;{% else %}?{% endif %}{% include 'utm_param.twig' %}" title="{{data['title']}}" target="_blank">{{config['quote']['signature']}}</a>
+            <span class="author_signature" style="display: block; font-size: 20px; color: white; font-weight: bold; text-align: right; padding-top: 5px">
+                &ndash; <a style="color: white; text-decoration: none;" href="{{data['url']}}{% if ('?' in data['url']) == true %}&amp;{% else %}?{% endif %}{% include 'utm_param.twig' %}" title="{{data['title']}}" target="_blank">{{config['quote']['signature']}}</a>
             </span>
         </td>
     </tr>
 </table>
+<div class="block_shadow" style="height: 4px; background-color: #CCC7B0; margin-left: 4px;"></div>

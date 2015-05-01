@@ -4,27 +4,38 @@
 {% set title_align = 'left' %}
 <table class="double_blog" width="100%" bgcolor="white" border="0" cellpadding="0" cellspacing="0" style="color: inherit; font-family: inherit; font-size: inherit; cursor: inherit;">
     <tr>
-        <td class="blog_left image" valign="top" width="50%" style="color: inherit; font-family: inherit; font-size: inherit; cursor: inherit;">
+        <td class="blog_left content" valign="top" style="color: inherit; font-family: inherit; font-size: inherit; cursor: inherit; padding: 5px" width="47%">
             {% set data = data_left %}
             {% include 'blog_image.twig' %}
         </td>
-        <td class="blog_right image" valign="top" style="color: inherit; font-family: inherit; font-size: inherit; cursor: inherit;">
+        <td width="6%" style="background-color: #e5e2d6">&nbsp;</td>
+        <td class="blog_left content" valign="top" style="color: inherit; font-family: inherit; font-size: inherit; cursor: inherit; padding: 5px" width="47%">
             {% set data = data_right %}
             {% include 'blog_image.twig' %}
         </td>
     </tr>
     <tr>
-        <td class="blog_left content" valign="top" style="color: inherit; font-family: inherit; font-size: inherit; cursor: inherit;">
+        <td class="blog_left content" valign="top" style="color: inherit; font-family: inherit; font-size: inherit; cursor: inherit;" width="47%">
             {% set data = data_left %}
             {% include 'blog_title.twig' %}
             {% include 'blog_blurb.twig' %}
             {% include 'blog_readmore.twig' %}
         </td>
-        <td class="blog_right content" valign="top" style="color: inherit; font-family: inherit; font-size: inherit; cursor: inherit;">
+        <td width="6%" style="background-color: #e5e2d6">&nbsp;</td>
+        <td class="blog_left content" valign="top" style="color: inherit; font-family: inherit; font-size: inherit; cursor: inherit;" width="47%">
             {% set data = data_right %}
             {% include 'blog_title.twig' %}
             {% include 'blog_blurb.twig' %}
             {% include 'blog_readmore.twig' %}
+        </td>
+    </tr>
+    <tr>
+        <td class="blog_left content" valign="top" style="color: inherit; font-family: inherit; font-size: inherit; cursor: inherit; background-color: #e5e2d6" width="47%">
+            <div class="block_shadow" style="height: 4px; background-color: #CCC7B0; margin-left: 4px;"></div>
+        </td>
+        <td width="6%" style="background-color: #e5e2d6">&nbsp;</td>
+        <td class="blog_left content" valign="top" style="color: inherit; font-family: inherit; font-size: inherit; cursor: inherit; background-color: #e5e2d6" width="47%">
+            <div class="block_shadow" style="height: 4px; background-color: #CCC7B0; margin-left: 4px;"></div>
         </td>
     </tr>
 </table>
