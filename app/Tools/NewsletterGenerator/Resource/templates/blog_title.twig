@@ -1,5 +1,5 @@
 <!-- <<<<<<< TITLE >>>>>>> -->
-<div class="title" style="font-size: 18px; text-align: {% if title_align %}{{title_align}}{%else%}center{% endif %}; padding: 25px 10px 0px 20px; word-break: keep-all;">
+<div class="title" style="font-size: 18px; text-align: {% if title_align %}{{title_align}}{%else%}center{% endif %}; padding: 30px 10px 0px 20px; word-break: keep-all;">
     <a href="{{data['url']}}{% if ('?' in data['url']) == true  %}&amp;{% else %}?{% endif %}{% include 'utm_param.twig' %}" target="_blank" style="color: #7d3705; text-decoration: none;">{{data['title']}}</a>
 </div>
 <!-- >>>>>>> TITLE <<<<<<< -->
