@@ -16,7 +16,7 @@
         "video_image_link": "http://img.youtube.com/vi/%s/maxresdefault.jpg",
         "video_gdata_link": "http://gdata.youtube.com/feeds/api/videos/%s?v=2&alt=json&prettyprint=true"
     },
-    "blogs": ["single_blog", "double_blog", "split_blog", "split_blog_mirror"],
+    "blogs": ["single_blog", "double_blog", "split_blog", "split_blog_mirror", "double_split_blog"],
     "blog_image": {
         "youtube_icon": "http://www.ishafoundation.org/mail/app/index.php?/public/file/view/ry/se",
         "volume_icon": "http://www.ishafoundation.org/mail/app/index.php?/public/file/view/ry/sn"
@@ -58,6 +58,16 @@
         }
     },
     "split_blog_mirror": {
+        "type": "blog",
+        "defaults": {
+            "image": {
+                "width": 325,
+                "height": 270,
+                "resolution": 75
+            }
+        }
+    },
+    "double_split_blog": {
         "type": "blog",
         "defaults": {
             "image": {

@@ -1,0 +1,10 @@
+<!-- <<<<<<< READMORE IMAGE >>>>>>> -->
+{% if language == 'tamil' %}
+    {% set readmore = "மேலும்" %}
+{% else %}
+    {% set readmore = "More" %}
+{% endif %}
+<a href="{{data['url']}}{% if ('?' in data['url']) == true  %}&amp;{% else %}?{% endif %}{% include 'utm_param.twig' %}" style="text-decoration: none; color: inherit;" target="_blank" title="{{data['title']}}">
+    <img alt="{{readmore}}" title="{{readmore}}" border="10" width="30" src="https://gallery.mailchimp.com/be38b7a8cd19d420bb43fd883/images/8fcf0a48-7fe6-42b2-b629-39ab48ab0d5c.png" style="width:30px;float:right;max-width:30px;display:block;border-color:#c46f17;background-color:#c46f17;outline:none;text-decoration:none;margin: 20px" class="CToWUd" />
+</a>
+<!-- >>>>>>> READMORE IMAGE <<<<<<< -->

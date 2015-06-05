@@ -92,6 +92,7 @@ class Helper {
         }
         $dst_img = ImageCreateTrueColor($thumb_w, $thumb_h);
         imagecopyresampled($dst_img, $src_img, 0, 0, 0, 0, $thumb_w, $thumb_h, $old_x, $old_y);
+        imageinterlace($dst_img, true);
         if (preg_match("/png|PNG/", $system[1])) {
             imagepng($dst_img, $modifiedImage, $resolution * (9 / 100));
         }
@@ -146,6 +147,7 @@ class Helper {
         $outFile = imagecreatetruecolor($width, $height);
         imagecopyresampled($outFile, $jpeg, 0, 0, 0, 0, $width, $height, $width, $height);
         imagecopyresampled($outFile, $png, $x, $y, 0, 0, $newwidth, $newheight, $newwidth, $newheight);
+        imageinterlace($outFile, true);
         imagejpeg($outFile, $image, 80);
         imagedestroy($outFile);
     }
@@ -189,6 +191,7 @@ class Helper {
             'width' => $width,
             'height'=> $height
         ));
+        imageinterlace($image, true);
         imagejpeg($image, $outFile, 80);
         imagedestroy($image);
     }

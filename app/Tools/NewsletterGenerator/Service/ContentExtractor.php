@@ -31,6 +31,7 @@ class ContentExtractor extends Helper {
     function getBlocksFromData($data) {
         $blocks = array();
         $block = array();
+        $emptyTypeCount = 1;
         foreach ($data as $value) {
             if (strtolower($value['sheetname']) === 'blocks') {
                 $rows = $value['rows'];
@@ -42,9 +43,10 @@ class ContentExtractor extends Helper {
                         $block['type'] = $row[0];
                         $block['data'] = $this->getBlockData($row);
                         if ($block['type'] === "") {
-                            $block['type'] = $blocks[$key - 1]['type'];
+                            $block['type'] = $blocks[$key - $emptyTypeCount]['type'];
                             $this->validateExcelBlockData($block);
-                            array_push($blocks[$key - 1]['data'], $block['data'][0]);
+                            array_push($blocks[$key - $emptyTypeCount]['data'], $block['data'][0]);
+                            $emptyTypeCount++;
                         }
                         else {
                             $this->validateExcelBlockData($block);
@@ -104,7 +106,7 @@ class ContentExtractor extends Helper {
 
     function validateExcelBlockData($block) {
         if (
-            in_array($block['type'], array("single_blog", "double_blog", "split_blog", "split_blog_mirror")) &&
+            in_array($block['type'], array("single_blog", "double_blog", "split_blog", "split_blog_mirror", "double_split_blog")) &&
             $block['data'][0]['url'] === ""
         ) {
             echo "\nURL missing for a block\n\n";

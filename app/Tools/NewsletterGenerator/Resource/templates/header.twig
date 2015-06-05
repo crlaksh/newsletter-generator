@@ -1,25 +1,25 @@
 <!-- ####### HEADER ####### -->
 {% set data = data[0] %}
 {% set display_date = data['media']['duration'] %}
-<table class="header" border="0" cellpadding="0" cellspacing="0" style="padding: 0; color: inherit; font-family: inherit; font-size: inherit; cursor: inherit; background: url('https://gallery.mailchimp.com/be38b7a8cd19d420bb43fd883/images/854c9d0b-5d7a-4e98-a169-10c4ce28273d.png'); max-width: inherit; width: 100%">
+<table class="header" border="0" cellpadding="0" cellspacing="0" style="padding: 0; color: #7c7c7c; font-family:  Arial, Helvetica, sans-serif, Latha, Inaimathi; font-size: 85%; cursor: default; background: url('https://gallery.mailchimp.com/be38b7a8cd19d420bb43fd883/images/854c9d0b-5d7a-4e98-a169-10c4ce28273d.png'); max-width: inherit; background-color: #C5A985; width: 100%">
     <tr>
-        <td style="height: 33px; background: url('https://gallery.mailchimp.com/be38b7a8cd19d420bb43fd883/images/fb602708-de2f-49f8-980b-a7c1e5e45ed2.png');" colspan="2">&nbsp;</td>
+        <td style="height: 33px; background: url('https://gallery.mailchimp.com/be38b7a8cd19d420bb43fd883/images/fb602708-de2f-49f8-980b-a7c1e5e45ed2.png'); background-color: #c46f17" colspan="2">&nbsp;</td>
     </tr>
     <tr>
-        <td class="logo" valign="top" style="color: inherit; font-family: inherit; font-size: inherit; cursor: inherit; padding: 20px" width="25%" align="center">
+        <td class="logo" valign="top" style="color: #7c7c7c; font-family:  Arial, Helvetica, sans-serif, Latha, Inaimathi; font-size: 85%; cursor: default; padding: 20px" width="25%" align="center">
             {% if language == 'tamil' %}
             <a href="http://tamilblog.ishafoundation.org/category/video/video-video/?{% include 'utm_param.twig' %}" target="_blank" style="text-decoration: none; color: inherit;">
-                <img src="http://www.ishafoundation.org/mumbai/newsletter/mar/img2/isha-foundation-logo-white.png" alt="ஈஷா தமிழ் Logo" style="display: block;" border="0" />
+                <img src="http://www.ishafoundation.org/mumbai/newsletter/mar/img2/isha-foundation-logo-white.png" alt="ஈஷா" style="display: block;" border="0" />
             </a>
             {% else %}
-            <a href="http://www.ishafoundation.org/ta/?{% include 'utm_param.twig' %}" style="text-decoration: none; color: inherit; padding-left: 8px; padding-right: 13px" title="Visit Isha Foundation" target="_blank">
+            <a href="http://www.ishafoundation.org/ta/?{% include 'utm_param.twig' %}" style="text-decoration: none; color: #7c7c7c; padding-left: 8px; padding-right: 13px" title="Visit Isha Foundation" target="_blank">
                 <img src="http://www.ishafoundation.org/mailmarketer/admin/temp/user/1/logo.png" alt="Isha Logo" border="0" height="69" width="79" />
             </a>
             {% endif %}
         </td>
-        <td class="title" style="padding-right: 25px; font-size: 25px; line-height: 1.4em; color: inherit; font-family: inherit; cursor: inherit;" align="right">
-            <a style="color: white; text-decoration:none;" href="http://tamilblog.ishafoundation.org/?{% include 'utm_param.twig' %}" target="_blank">{{data['title']}}</a> <br /> <span style="font-size: 15px; color: white; line-height: 23px;">{{data['blurb']}}</span>
-            <div class="display_date" style="font-size: 18px; color: #27414d; line-height: 1.2em; padding-top: 10px; padding-bottom: 10px; font-family: inherit; cursor: inherit;" align="right" width="100%">
+        <td class="title" style="padding-right: 25px; color: #7c7c7c; font-family:  Arial, Helvetica, sans-serif, Latha, Inaimathi; font-size: 85%; cursor: default;" align="right">
+            <a style="color: white; text-decoration:none; font-size: 230%; line-height: 140%;" href="http://tamilblog.ishafoundation.org/?{% include 'utm_param.twig' %}" target="_blank">{{data['title']}}</a> <br /> <span style="font-size: 130%; color: white; line-height: 180%;">{{data['blurb']}}</span>
+            <div class="display_date" style="font-size: 160%; color: #27414d; line-height: 120%; padding-top: 10px; padding-bottom: 10px; font-family: Arial, Helvetica, sans-serif, Latha, Inaimathi; cursor: default;" align="right" width="100%">
                 <span class="month_and_day">{{display_date}}</span>
             </div>
         </td>

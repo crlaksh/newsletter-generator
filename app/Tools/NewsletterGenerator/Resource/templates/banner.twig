@@ -3,7 +3,13 @@
 <table class="banner" width="100%" bgcolor="white" border="0" cellpadding="0" cellspacing="0" style="color: inherit; font-family: inherit; font-size: inherit; cursor: inherit;">
     <tr>
         <td class="image" valign="top" style="color: inherit; font-family: inherit; font-size: inherit; cursor: inherit;">
-            <a href="{{data['url']}}{% if ('?' in data['url']) == true  %}&amp;{% else %}?{% endif %}{% include 'utm_param.twig' %}" style="text-decoration: none; color: inherit;" target="_blank"><img src="{{data['media']['image']['url']}}" alt="{{data['title']}}" title="{{data['title']}}" style="display: block;" border="0" width="100%" height="auto" /></a>
+            {% if data['url'] %}
+            <a href="{{data['url']}}{% if ('?' in data['url']) == true  %}&amp;{% else %}?{% endif %}{% include 'utm_param.twig' %}" style="text-decoration: none; color: inherit;" target="_blank">
+            {% endif %}
+                <img src="{{data['media']['image']['url']}}" alt="{{data['title']}}" title="{{data['title']}}" style="display: block;" border="0" width="100%" height="auto" />
+            {% if data['url'] %}
+            </a>
+            {% endif %}
         </td>
     </tr>
 </table>
