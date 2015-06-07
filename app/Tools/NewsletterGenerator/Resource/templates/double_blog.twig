@@ -4,40 +4,42 @@
 {% set title_align = 'left' %}
 <table class="double_blog" width="100%" bgcolor="white" border="0" cellpadding="0" cellspacing="0" style="cursor: default;">
     <tr>
-        <td class="blog_left content" valign="top" style="color: #7c7c7c; font-family: Arial, Helvetica, sans-serif, Latha, Inaimathi; font-size: 11px; cursor: default; padding: 5px" width="47%">
-            {% set data = data_left %}
-            {% include 'blog_image.twig' %}
+        <td style="cursor: default; border-spacing: 5px; border-bottom: solid; border-bottom-color: #cccac0; border-bottom-width: 4px; border-right: solid; border-right-color: #cccac0; border-right-width: 4px;" width="47.5%" valign="top">
+            <table class="double_blog" width="100%" bgcolor="white" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="blog_left content" valign="top" style="color: #7c7c7c; font-family: Arial, Helvetica, sans-serif, Latha, Inaimathi; font-size: 11px; cursor: default; padding: 5px;">
+                        {% set data = data_left %}
+                        {% include 'blog_image.twig' %}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="blog_left content" valign="top" style="color: #7c7c7c; font-family: Arial, Helvetica, sans-serif, Latha, Inaimathi; font-size: 11px; cursor: default; padding: 20px">
+                        {% set data = data_left %}
+                        {% include 'blog_title.twig' %}
+                        <br />
+                        {% include 'blog_blurb.twig' %}
+                    </td>
+                </tr>
+            </table>
         </td>
-        <td width="6%" style="background-color: #e5e2d6">&nbsp;</td>
-        <td class="blog_left content" valign="top" style="color: #7c7c7c; font-family: Arial, Helvetica, sans-serif, Latha, Inaimathi; font-size: 11px; cursor: default; padding: 5px" width="47%">
-            {% set data = data_right %}
-            {% include 'blog_image.twig' %}
-        </td>
-    </tr>
-    <tr>
-        <td class="blog_left content" valign="top" style="color: #7c7c7c; font-family: Arial, Helvetica, sans-serif, Latha, Inaimathi; font-size: 11px; cursor: default; padding: 20px" width="47%">
-            {% set data = data_left %}
-            {% include 'blog_title.twig' %}
-            <br />
-            {% include 'blog_blurb.twig' %}
-            {% include 'blog_readmore.twig' %}
-        </td>
-        <td width="6%" style="background-color: #e5e2d6">&nbsp;</td>
-        <td class="blog_left content" valign="top" style="color: #7c7c7c; font-family: Arial, Helvetica, sans-serif, Latha, Inaimathi; font-size: 11px; cursor: default; padding: 20px" width="47%">
-            {% set data = data_right %}
-            {% include 'blog_title.twig' %}
-            <br />
-            {% include 'blog_blurb.twig' %}
-            {% include 'blog_readmore.twig' %}
-        </td>
-    </tr>
-    <tr>
-        <td class="blog_left content" valign="top" style="color: #7c7c7c; font-family: Arial, Helvetica, sans-serif, Latha, Inaimathi; font-size: 11px; cursor: default; background-color: #e5e2d6" width="47%">
-            <div class="block_shadow" style="height: 4px; background-color: #CCC7B0; margin-left: 4px;"></div>
-        </td>
-        <td width="6%" style="background-color: #e5e2d6">&nbsp;</td>
-        <td class="blog_left content" valign="top" style="color: #7c7c7c; font-family: Arial, Helvetica, sans-serif, Latha, Inaimathi; font-size: 11px; cursor: default; background-color: #e5e2d6" width="47%">
-            <div class="block_shadow" style="height: 4px; background-color: #CCC7B0; margin-left: 4px;"></div>
+        <td width="30px" style="background-color: #e5e2d6">&nbsp;</td>
+        <td style="cursor: default; border-spacing: 5px; border-bottom: solid; border-bottom-color: #cccac0; border-bottom-width: 4px; border-right: solid; border-right-color: #cccac0; border-right-width: 4px;" width="47.5%" valign="top">
+            <table class="double_blog" width="100%" bgcolor="white" border="0" cellpadding="0" cellspacing="0" style="cursor: default;">
+                <tr>
+                    <td class="blog_left content" valign="top" style="color: #7c7c7c; font-family: Arial, Helvetica, sans-serif, Latha, Inaimathi; font-size: 11px; cursor: default; padding: 5px">
+                        {% set data = data_right %}
+                        {% include 'blog_image.twig' %}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="blog_left content" valign="top" style="color: #7c7c7c; font-family: Arial, Helvetica, sans-serif, Latha, Inaimathi; font-size: 11px; cursor: default; padding: 20px">
+                        {% set data = data_right %}
+                        {% include 'blog_title.twig' %}
+                        <br />
+                        {% include 'blog_blurb.twig' %}
+                    </td>
+                </tr>
+            </table>
         </td>
     </tr>
 </table>

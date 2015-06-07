@@ -1,5 +1,7 @@
 <!-- <<<<<<< BLURB >>>>>>> -->
-<div class="blurb" style="color: #222; padding: 0px; line-height: 1.6em; word-break: keep-all;">
-    {{data['blurb']}}
+<div class="blurb" style="color: #222; font-size: 12px; padding: 0px; line-height: 1.8em; word-break: keep-all; letter-spacing: 0em; word-spacing: 0.25em">
+    {% if slice_count %}{{data['blurb']|slice(0, slice_count)}}{% else %}{{data['blurb']}}{% endif %}... <a href="{{data['url']}}{% if ('?' in data['url']) == true  %}&amp;{% else %}?{% endif %}{% include 'utm_param.twig' %}" target="_blank" style="text-decoration: none; color: #7d3705; font-size: 15px" title="{{readmore}}...   {{data['title']}}">
+        {{readmore}}
+    </a>
 </div>
 <!-- >>>>>>> BLURB <<<<<<< -->
