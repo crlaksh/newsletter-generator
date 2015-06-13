@@ -10,7 +10,7 @@
 <!-- <<<<<<< IMAGE >>>>>>> -->
 <div class="image" align="middle" style="color: #7c7c7c; font-family: Arial, Helvetica, sans-serif, Latha, Inaimathi; font-size: 11px; cursor: default;">
     <a href="{{data['url']}}{% if ('?' in data['url']) == true  %}&amp;{% else %}?{% endif %}{% include 'utm_param.twig' %}" style="text-decoration: none; color: inherit;" target="_blank" title="{{data['title']}}">
-        <img src="{{data['media']['image']['url']}}" alt="{{data['title']}}" title="{{data['title']}}" border="0" style="display: block;" width="100%" />
+        <img src="{{data['media']['image']['url']}}" alt="{{data['title']}}" title="{{data['title']}}" border="0" style="display: block;" width="{{data['media']['image']['width']}}" />
     </a>
 </div>
 <!-- >>>>>>> IMAGE <<<<<<< -->
