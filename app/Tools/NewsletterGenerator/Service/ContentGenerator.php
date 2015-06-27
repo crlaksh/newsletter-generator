@@ -139,6 +139,27 @@ class ContentGenerator extends Helper {
                 // $this->embedText(
                 //     $imageNewsletterDest,
                 //     $imageNewsletterDest,
+                //     $data['title'],
+                //     $config['newsletter_tamil_font']
+                // );
+                // $this->embedText(
+                //     $imageNewsletterDest,
+                //     $imageNewsletterDest,
+                //     'ரு', //இருத்தல் மட்டும்தானா
+                //     $config['newsletter_tamil_font'],
+                //     15
+                // );
+                // $this->embedText(
+                //     $imageNewsletterDest,
+                //     $imageNewsletterDest,
+                //     'த்', //இருத்தல் மட்டும்தானா
+                //     $config['newsletter_tamil_font'],
+                //     30
+                // );
+                // $
+                // $this->embedText(
+                //     $imageNewsletterDest,
+                //     $imageNewsletterDest,
                 //     "00:00 / " . $data['media']['duration'],
                 //     $config['newsletter_english_font']
                 // );
@@ -146,7 +167,20 @@ class ContentGenerator extends Helper {
         }
         return $data;
     }
-
+//decimal to unicode character
+function unichr($dec) {
+  if ($dec < 128) {
+    $utf = chr($dec);
+  } else if ($dec < 2048) {
+    $utf = chr(192 + (($dec - ($dec % 64)) / 64));
+    $utf .= chr(128 + ($dec % 64));
+  } else {
+    $utf = chr(224 + (($dec - ($dec % 4096)) / 4096));
+    $utf .= chr(128 + ((($dec % 4096) - ($dec % 64)) / 64));
+    $utf .= chr(128 + ($dec % 64));
+  }
+  return $utf;
+}
     function getVideoId($videoSrc) {
         $videoId = preg_replace("/http.*\:\/\/www\.youtube\.com\/embed\/(.*)\?feature\=oembed/", "$1", $videoSrc);
         return $videoId;

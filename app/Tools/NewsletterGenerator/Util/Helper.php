@@ -143,7 +143,7 @@ class Helper {
         list($width, $height) = getimagesize($image);
         list($newwidth, $newheight) = getimagesize($embedImage);
         $x = ($width / 2) - ($newwidth / 2);
-        $y = ($height / 2) - ($newheight / 2);
+        $y = ($height / 2) - ($newheight / 2) - 1;
         $outFile = imagecreatetruecolor($width, $height);
         imagecopyresampled($outFile, $jpeg, 0, 0, 0, 0, $width, $height, $width, $height);
         imagecopyresampled($outFile, $png, $x, $y, 0, 0, $newwidth, $newheight, $newwidth, $newheight);
@@ -164,13 +164,13 @@ class Helper {
     }
 
     function embedText(
-        $image, $outFile, $embedText, $font
+        $image, $outFile, $embedText, $font, $x = 5, $y = 15
     ) {
         $jpeg = imagecreatefromjpeg($image);
         $color = imagecolorallocate($jpeg,  30, 30, 30);
         $this->drawBottomBorder($jpeg, $color, 26);
         $textColor = imagecolorallocate($jpeg, 255, 255, 255);
-        imagettftext($jpeg, 8, 0, 5, 15, $textColor, $font, $embedText);
+        imagettftext($jpeg, 8, 0, $x, $y, $textColor, $font, $embedText);
         imagejpeg($jpeg, $outFile, 100);
         imagedestroy($jpeg);
     }
