@@ -60,7 +60,7 @@ class ContentGenerator extends Helper {
             if ($data['media']['image']['url'] === "") {
                 $data['media']['type'] = 'image';
                 $imageSrc = $this->getElementAttribute($html, $config['blog_data']['image_element'], 'src');
-                if (!$imageSrc && $imageSrc !== "") {
+                if ($imageSrc === "") {
                     $data['media']['type'] = 'video';
                     $videoSrc = $this->getElementAttribute($html, $config['blog_data']['video_element'], 'src');
                     $videoId = $this->getVideoId($videoSrc);
