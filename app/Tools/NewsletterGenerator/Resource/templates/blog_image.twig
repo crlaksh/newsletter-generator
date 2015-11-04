@@ -2,7 +2,7 @@
 <!-- <<<<<<< TOP VIDEO PANEL >>>>>>> -->
 <div class="video_title" style="background-color: #1E1E1E; padding: 6px 6px 2px 8px; font-size: 9px;">
     <a href="{{data['url']}}{% if ('?' in data['url']) == true  %}&amp;{% else %}?{% endif %}{% include 'utm_param.twig' %}" style="text-decoration: none; color: #DDD;" target="_blank">
-        {{data['title']}}
+        {% if slice_count %}{{data['title']|slice(0, slice_count)}}...{% else %}{{data['title']}}{% endif %}
     </a>
 </div>
 <!-- >>>>>>> TOP VIDEO PANEL <<<<<<< -->

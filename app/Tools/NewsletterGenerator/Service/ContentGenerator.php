@@ -58,7 +58,6 @@ class ContentGenerator extends Helper {
                 $data['blurb'] = $this->getElementTextContent($html, $config['blog_data']['blurb_element']);
             }
             if ($data['media']['image']['url'] === "") {
-                $data['media']['type'] = 'image';
                 $imageSrc = $this->getElementAttribute($html, $config['blog_data']['image_element'], 'src');
                 if ($imageSrc === "") {
                     $data['media']['type'] = 'video';
@@ -119,6 +118,10 @@ class ContentGenerator extends Helper {
             $data['media']['image']['width'] = $data['media']['image']['width'] !== "" ? $data['media']['image']['width'] : $config[$blockType]['defaults']['image']['width'];
             $data['media']['image']['height'] = $data['media']['image']['height'] !== "" ? $data['media']['image']['height'] : $config[$blockType]['defaults']['image']['height'];
             $data['media']['image']['resolution'] = $data['media']['image']['resolution'] !== "" ? $data['media']['image']['resolution'] : $config[$blockType]['defaults']['image']['resolution'];
+            if (isset($data['media']['type']) && $data['media']['type'] === 'video') {
+                $adjustHeight = 50;
+                $data['media']['image']['height'] = $data['media']['image']['height'] - $adjustHeight;
+            }
             $this->resizeImage(
                 $imageNewsletterDest,
                 $imageNewsletterDest,
