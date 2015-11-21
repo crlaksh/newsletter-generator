@@ -152,25 +152,27 @@ class Helper {
         imagedestroy($outFile);
     }
 
-    function drawBottomBorder(&$img, &$color, $thickness = 1) {
+    function drawBottomBorder($img, $color, $width = 1, $height = 1) {
         $x2 = ImageSX($img) - 1;
-        $y2 = ImageSY($img) - 1 + $thickness + $thickness;
+        $y2 = ImageSY($img) - 1;
         $x1 = 0;
-        $y1 = $y2 - $thickness;
+        $y1 = $y2;
 
-        for ($i = 0; $i < $thickness; $i++) {
-            imagerectangle($img, $x1++, $y1++, $x2--, $y2--, $color);
+        for ($i = 0; $i < $height; $i++) {
+            imagerectangle($img, $x2 - $width, $y1++, $x2, $y2--, $color);
         }
     }
 
     function embedText(
-        $image, $outFile, $embedText, $font, $x = 5, $y = 15
+        $image, $outFile, $embedText, $font, $fontSize = 9, $x = 0, $y = 0
     ) {
         $jpeg = imagecreatefromjpeg($image);
-        $color = imagecolorallocate($jpeg,  30, 30, 30);
-        $this->drawBottomBorder($jpeg, $color, 26);
+        $color = imagecolorallocate($jpeg,  0, 0, 0);
+        $this->drawBottomBorder($jpeg, $color, 45, 18);
         $textColor = imagecolorallocate($jpeg, 255, 255, 255);
-        imagettftext($jpeg, 8, 0, $x, $y, $textColor, $font, $embedText);
+        $x = ImageSX($jpeg) - 40;
+        $y = ImageSY($jpeg) - 5;
+        imagettftext($jpeg, $fontSize, 0, $x, $y, $textColor, $font, $embedText);
         imagejpeg($jpeg, $outFile, 100);
         imagedestroy($jpeg);
     }
@@ -182,8 +184,8 @@ class Helper {
         list($originalWidth, $originalHeight) = getimagesize($imageSrc);
         $x = $x !== "" ? $x : 0;
         $y = $y !== "" ? $y : 0;
-        $width = $width !== "" ? $width : $originalWidth;
-        $height = $height !== "" ? $height : $originalHeight;
+        $width = $width !== "" ? $originalWidth - $width - $x : $originalWidth - $x;
+        $height = $height !== "" ? $originalHeight - $height - $y : $originalHeight - $y;
         $image = imagecreatefromjpeg($imageSrc);
         $image = imagecrop($image, array(
             'x' => $x,

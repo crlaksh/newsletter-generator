@@ -6,11 +6,9 @@
     <title>Newsletter Data</title>
 </head>
 <body>
+{% if details %}
 <!-- ===================== DETAILS ===================== -->
 <table cellspacing="0" border="0">
-    <tr>
-        <th colspan="2"><h1>Details</h1></th>
-    </tr>
     <tr>
         <th>Key</th>
         <th>Value</th>
@@ -23,11 +21,9 @@
     {% endfor %}
 </table>
 <br>
+{% endif %}
 <!-- ===================== BLOCKS ===================== -->
 <table cellspacing="0" border="0">
-    <tr>
-        <th colspan="2"><h1>Blocks</h1></th>
-    </tr>
     <tr>
         <th>Type</th>
         <th>Title</th>
@@ -35,14 +31,14 @@
         <th>URL</th>
         <th>Media Type</th>
         <th>Media Duration</th>
-        <th>Media Image URL</th>
-        <th>Media Image Width</th>
-        <th>Media Image Height</th>
-        <th>Media Image Resolution</th>
-        <th>Media Image Crop X</th>
-        <th>Media Image Crop Y</th>
-        <th>Media Image Crop Width</th>
-        <th>Media Image Crop Height</th>
+        <th>Thumbnail URL</th>
+        <th>Thumbnail Width</th>
+        <th>Thumbnail Height</th>
+        <th>Thumbnail Resolution</th>
+        <th>Thumbnail Crop Left</th>
+        <th>Thumbnail Crop Top</th>
+        <th>Thumbnail Crop Right</th>
+        <th>Thumbnail Crop Bottom</th>
     </tr>
     {% for blockIndex, block in blocks %}
     {% for blockIndex, data in block['data'] %}

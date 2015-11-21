@@ -24,7 +24,6 @@ class ContentExtractor extends Helper {
                 }
             }
         }
-        $this->validateExcelDetailsData($details);
         return $details;
     }
 
@@ -33,7 +32,7 @@ class ContentExtractor extends Helper {
         $block = array();
         $emptyTypeCount = 1;
         foreach ($data as $value) {
-            if (strtolower($value['sheetname']) === 'blocks') {
+            if (strtolower($value['sheetname']) !== 'details') {
                 $rows = $value['rows'];
                 array_shift($rows); // Removing Title Row
                 $rowCount = count($rows);
@@ -83,25 +82,6 @@ class ContentExtractor extends Helper {
                 ]
             ]
         ]];
-    }
-
-    function validateExcelDetailsData($details) {
-        if (!isset($details) || count($details) === 0) {
-            echo "\nDetails not found\n\n";
-            exit;
-        }
-        if (!isset($details['utm_source'])) {
-            echo "\nutm_source not found in Details\n\n";
-            exit;
-        }
-        if (!isset($details['utm_medium'])) {
-            echo "\utm_medium not found in Details\n\n";
-            exit;
-        }
-        if (!isset($details['utm_campaign'])) {
-            echo "\nutm_campaign not found in Details\n\n";
-            exit;
-        }
     }
 
     function validateExcelBlockData($block) {

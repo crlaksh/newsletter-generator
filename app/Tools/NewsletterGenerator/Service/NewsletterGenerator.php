@@ -17,7 +17,14 @@ class NewsletterGenerator extends Helper {
         $newsletterData['blocks'] = $contentExtractor->getBlocksFromData($inputData);
 
         $contentGenerator = new ContentGenerator();
-        $newsletterFileNameSource = $newsletterData['details']['utm_campaign'];
+        $newsletterDate = $newsletterData['blocks'][0]['data'][0]['media']['duration'];
+        $newsletterDateSplit = explode(' ', $newsletterDate);
+        $newsletterMonth = $newsletterDateSplit[0];
+        $newsletterDay = explode(',', $newsletterDateSplit[1])[0];
+        $newsletterYear = explode(', ', $newsletterDate)[1];
+        $newsletterDateEng = $newsletterDay . "_" . $newsletterData['config']['month_locale'][$newsletterMonth] . "_" . $newsletterYear;
+        $newsletterFileNameSource = $newsletterData['config']['utm_campaign'] . "_" . $newsletterDateEng;
+        $newsletterData['config']['utm_campaign'] = $newsletterFileNameSource;
 
         $newsletterFile = $contentGenerator->getNewsletterFilename($newsletterFileNameSource, $config);
         $newsletterPath = dirname($newsletterFile) . '/';

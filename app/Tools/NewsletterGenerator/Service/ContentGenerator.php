@@ -93,9 +93,6 @@ class ContentGenerator extends Helper {
                     $imageSrc = $imageDownloadDest;
                 }
             }
-            else {
-                copy($imageSrc, $imageDownloadDest);
-            }
             copy($imageDownloadDest, $imageNewsletterDest);
             $data['media']['image']['url'] = $imageNewsletterLink;
         }
@@ -119,8 +116,10 @@ class ContentGenerator extends Helper {
             $data['media']['image']['height'] = $data['media']['image']['height'] !== "" ? $data['media']['image']['height'] : $config[$blockType]['defaults']['image']['height'];
             $data['media']['image']['resolution'] = $data['media']['image']['resolution'] !== "" ? $data['media']['image']['resolution'] : $config[$blockType]['defaults']['image']['resolution'];
             if (isset($data['media']['type']) && $data['media']['type'] === 'video') {
-                $adjustHeight = 50;
-                $data['media']['image']['height'] = $data['media']['image']['height'] - $adjustHeight;
+                if ($blockType === "single_blog") {
+                    $adjustHeight = 60;
+                    $data['media']['image']['height'] = $data['media']['image']['height'] - $adjustHeight;
+                }
             }
             $this->resizeImage(
                 $imageNewsletterDest,
@@ -138,6 +137,12 @@ class ContentGenerator extends Helper {
                     $imageNewsletterDest,
                     $imageNewsletterDest,
                     $config['blog_data']['youtube_icon']
+                );
+                $this->embedText(
+                    $imageNewsletterDest,
+                    $imageNewsletterDest,
+                    $data['media']['duration'],
+                    $config['newsletter_time_font']
                 );
             }
         }
