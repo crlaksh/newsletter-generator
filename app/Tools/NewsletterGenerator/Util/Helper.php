@@ -171,7 +171,7 @@ class Helper {
         $jpeg = imagecreatefromjpeg($image);
         $color = imagecolorallocate($jpeg,  30, 30, 30);
         $borderColor = imagecolorallocate($jpeg,  60, 60, 60);
-        $textColor = imagecolorallocate($jpeg, 255, 255, 255);
+        $textColor = imagecolorallocate($jpeg, 220, 220, 220);
         $this->drawBottomBorder($jpeg, $color, $borderColor, 45, 18);
         $x = ImageSX($jpeg) - 45;
         $y = ImageSY($jpeg) - 9;
