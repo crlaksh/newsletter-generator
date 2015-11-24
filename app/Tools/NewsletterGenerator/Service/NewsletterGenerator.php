@@ -38,7 +38,9 @@ class NewsletterGenerator extends Helper {
                  $newsletterDaySuffix = 'th';
                  break;
         }
-        if ($newsletterMonth === '11') {
+        if ($newsletterMonth === '11' ||
+            $newsletterMonth === '12' ||
+            $newsletterMonth === '13') {
             $newsletterDaySuffix = 'th';
         }
         $newsletterDateEng = $newsletterDay . $newsletterDaySuffix . "_" . $newsletterData['config']['month_locale'][$newsletterMonth] . "_" . $newsletterYear;
