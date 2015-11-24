@@ -154,14 +154,15 @@ class Helper {
 
     function drawBottomBorder($img, $color, $borderColor, $width = 1, $height = 1) {
         $x2 = ImageSX($img) - 5;
-        $y2 = ImageSY($img) - 3;
+        $y2 = ImageSY($img) - 4;
         $x1 = $x2 - $width;
+        $y1 = $y2;
 
         for ($i = 0; $i < $height; $i++) {
-            $y2--;
-            imagerectangle($img, $x1, $y2, $x2, $y2, $color);
+            $y1--;
+            imagerectangle($img, $x1, $y1, $x2, $y1, $color);
         }
-        imagerectangle($img, $x1, $y2 - 1, $x2, ImageSY($img) - 3, $borderColor);
+        imagerectangle($img, $x1, $y1 - 1, $x2, $y2, $borderColor);
     }
 
     function embedText(
