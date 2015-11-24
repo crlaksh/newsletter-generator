@@ -22,7 +22,26 @@ class NewsletterGenerator extends Helper {
         $newsletterMonth = $newsletterDateSplit[0];
         $newsletterDay = explode(',', $newsletterDateSplit[1])[0];
         $newsletterYear = explode(', ', $newsletterDate)[1];
-        $newsletterDateEng = $newsletterDay . "_" . $newsletterData['config']['month_locale'][$newsletterMonth] . "_" . $newsletterYear;
+        $newsletterDayEndingNumber = substr($newsletterDay, -1);
+
+        switch ($newsletterDayEndingNumber) {
+             case '1':
+                 $newsletterDaySuffix = 'st';
+                 break;
+             case '2':
+                 $newsletterDaySuffix = 'nd';
+                 break;
+             case '3':
+                 $newsletterDaySuffix = 'rd';
+             
+             default:
+                 $newsletterDaySuffix = 'th';
+                 break;
+        }
+        if ($newsletterMonth === '11') {
+            $newsletterDaySuffix = 'th';
+        }
+        $newsletterDateEng = $newsletterDay . $newsletterDaySuffix . "_" . $newsletterData['config']['month_locale'][$newsletterMonth] . "_" . $newsletterYear;
         $newsletterFileNameSource = $newsletterData['config']['utm_campaign'] . "_" . $newsletterDateEng;
         $newsletterData['config']['utm_campaign'] = $newsletterFileNameSource;
 

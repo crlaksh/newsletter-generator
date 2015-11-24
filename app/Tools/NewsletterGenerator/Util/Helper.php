@@ -152,26 +152,28 @@ class Helper {
         imagedestroy($outFile);
     }
 
-    function drawBottomBorder($img, $color, $width = 1, $height = 1) {
-        $x2 = ImageSX($img) - 1;
-        $y2 = ImageSY($img) - 1;
-        $x1 = 0;
-        $y1 = $y2;
+    function drawBottomBorder($img, $color, $borderColor, $width = 1, $height = 1) {
+        $x2 = ImageSX($img) - 5;
+        $y2 = ImageSY($img) - 3;
+        $x1 = $x2 - $width;
 
         for ($i = 0; $i < $height; $i++) {
-            imagerectangle($img, $x2 - $width, $y1++, $x2, $y2--, $color);
+            $y2--;
+            imagerectangle($img, $x1, $y2, $x2, $y2, $color);
         }
+        imagerectangle($img, $x1, $y2 - 1, $x2, ImageSY($img) - 3, $borderColor);
     }
 
     function embedText(
         $image, $outFile, $embedText, $font, $fontSize = 9, $x = 0, $y = 0
     ) {
         $jpeg = imagecreatefromjpeg($image);
-        $color = imagecolorallocate($jpeg,  0, 0, 0);
-        $this->drawBottomBorder($jpeg, $color, 45, 18);
+        $color = imagecolorallocate($jpeg,  30, 30, 30);
+        $borderColor = imagecolorallocate($jpeg,  60, 60, 60);
         $textColor = imagecolorallocate($jpeg, 255, 255, 255);
-        $x = ImageSX($jpeg) - 40;
-        $y = ImageSY($jpeg) - 5;
+        $this->drawBottomBorder($jpeg, $color, $borderColor, 45, 18);
+        $x = ImageSX($jpeg) - 45;
+        $y = ImageSY($jpeg) - 9;
         imagettftext($jpeg, $fontSize, 0, $x, $y, $textColor, $font, $embedText);
         imagejpeg($jpeg, $outFile, 100);
         imagedestroy($jpeg);
