@@ -115,12 +115,6 @@ class ContentGenerator extends Helper {
             $data['media']['image']['width'] = $data['media']['image']['width'] !== "" ? $data['media']['image']['width'] : $config[$blockType]['defaults']['image']['width'];
             $data['media']['image']['height'] = $data['media']['image']['height'] !== "" ? $data['media']['image']['height'] : $config[$blockType]['defaults']['image']['height'];
             $data['media']['image']['resolution'] = $data['media']['image']['resolution'] !== "" ? $data['media']['image']['resolution'] : $config[$blockType]['defaults']['image']['resolution'];
-            if (isset($data['media']['type']) && $data['media']['type'] === 'video') {
-                if ($blockType === "single_blog") {
-                    $adjustHeight = 60;
-                    $data['media']['image']['height'] = $data['media']['image']['height'] - $adjustHeight;
-                }
-            }
             $this->resizeImage(
                 $imageNewsletterDest,
                 $imageNewsletterDest,
