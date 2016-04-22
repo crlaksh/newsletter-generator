@@ -41,7 +41,7 @@ class ContentGenerator extends Helper {
 
     function fillBlockData($blockType, $data, $newsletterPath, $config, $details) {
         $url = $data['url'];
-        $title = preg_replace("/http:\/\/tamilblog.ishafoundation.org\/(.*)\//", "$1", $url);
+        $title = preg_replace("/http:\/\/isha\.sadhguru\.org\/blog\/ta\/(.*)\//", "$1", $url);
         $imageSrc = FALSE;
         $imageNewsletterDest = FALSE;
         if ((
