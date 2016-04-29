@@ -13,7 +13,7 @@
             {% include 'blog_title.twig' %}
         </td>
         <td class="content" valign="top" style="color: #7c7c7c; font-family: Arial, Helvetica, sans-serif, Latha, Inaimathi; cursor: default; padding-right: 15px; padding-bottom: 5px; padding-top: 20px">
-            <a href="{{data['url']}}{% if ('?' in data['url']) == true  %}&amp;{% else %}?{% endif %}{% include 'utm_param.twig' %}" style="text-decoration: none; color: white; font-weight: bold; font-size: 20px; text-align: center" target="_blank" title="{{data['title']}}">
+            <a href="{{data['url']}}{% if ('?' in data['url']) == false  %}?{% include 'utm_param.twig' %}{% endif %}" style="text-decoration: none; color: white; font-weight: bold; font-size: 20px; text-align: center" target="_blank" title="{{data['title']}}">
             <img alt="&raquo;" title="{{readmore}}... {{data['title']}}" border="10" width="30" height="31" src="https://gallery.mailchimp.com/be38b7a8cd19d420bb43fd883/images/8fcf0a48-7fe6-42b2-b629-39ab48ab0d5c.png" style="width:30px;max-width:30px;display:block;border-color:#c46f17;background-color:#c46f17;outline:none;text-decoration:none; margin-right: 20px" class="CToWUd" /></a>
         </td>
     </tr>
