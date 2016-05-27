@@ -142,8 +142,8 @@ class Helper {
         $jpeg = imagecreatefromjpeg($image);
         list($width, $height) = getimagesize($image);
         list($newwidth, $newheight) = getimagesize($embedImage);
-        $x = ($width / 2) - ($newwidth / 2);
-        $y = ($height / 2) - ($newheight / 2) - 1;
+        $x = ($width) - ($newwidth) - 4;
+        $y = ($height) - ($newheight) - 4;
         $outFile = imagecreatetruecolor($width, $height);
         imagecopyresampled($outFile, $jpeg, 0, 0, 0, 0, $width, $height, $width, $height);
         imagecopyresampled($outFile, $png, $x, $y, 0, 0, $newwidth, $newheight, $newwidth, $newheight);
@@ -155,6 +155,8 @@ class Helper {
     function drawBottomBorder($img, $color, $borderColor, $width = 1, $height = 1) {
         $x2 = ImageSX($img) - 5;
         $y2 = ImageSY($img) - 4;
+        $x2 = $width + 4;
+        $y2 = 22;
         $x1 = $x2 - $width;
         $y1 = $y2;
 
@@ -169,12 +171,14 @@ class Helper {
         $image, $outFile, $embedText, $font, $fontSize = 9, $x = 0, $y = 0
     ) {
         $jpeg = imagecreatefromjpeg($image);
-        $color = imagecolorallocate($jpeg,  30, 30, 30);
-        $borderColor = imagecolorallocate($jpeg,  60, 60, 60);
+        $color = imagecolorallocate($jpeg,  25, 25, 25);
+        $borderColor = imagecolorallocate($jpeg,  30, 30, 30);
         $textColor = imagecolorallocate($jpeg, 220, 220, 220);
         $this->drawBottomBorder($jpeg, $color, $borderColor, 45, 18);
         $x = ImageSX($jpeg) - 45;
+        $x = 9;
         $y = ImageSY($jpeg) - 9;
+        $y = 17;
         imagettftext($jpeg, $fontSize, 0, $x, $y, $textColor, $font, $embedText);
         imagejpeg($jpeg, $outFile, 100);
         imagedestroy($jpeg);
