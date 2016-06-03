@@ -64,9 +64,9 @@ class ContentGenerator extends Helper {
                     $videoSrc = $this->getElementAttribute($html, $config['blog_data']['video_element'], 'src');
                     $videoId = $this->getVideoId($videoSrc);
                     $imageSrc = $this->getVideoImage($videoId, $config['blog_data']['video_image_link']);
-                    if ($data['media']['duration'] === "" && $videoId !== "") {
+                    /*if ($data['media']['duration'] === "" && $videoId !== "") {
                         $data['media']['duration'] = $this->getVideoDuration($videoId, $config['blog_data']['video_gdata_link']);
-                    }
+                    }*/
                 }
                 $imageFileExtension =  "." . pathinfo($imageSrc, PATHINFO_EXTENSION);
                 $imageFileName = $title . $imageFileExtension;
