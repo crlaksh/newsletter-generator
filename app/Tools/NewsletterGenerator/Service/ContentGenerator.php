@@ -124,20 +124,23 @@ class ContentGenerator extends Helper {
                 TRUE
             );
             if (
-                $data['media']['type'] === 'video' ||
-                $data['media']['duration'] !== ''
+                $data['media']['type'] === 'video'
             ) {
                 $this->embedImage(
                     $imageNewsletterDest,
                     $imageNewsletterDest,
                     $config['blog_data']['youtube_icon']
                 );
-                /*$this->embedText(
-                    $imageNewsletterDest,
-                    $imageNewsletterDest,
-                    $data['media']['duration'],
-                    $config['newsletter_time_font']
-                );*/
+                /*
+                if ($data['media']['duration'] !== '') {
+                    $this->embedText(
+                        $imageNewsletterDest,
+                        $imageNewsletterDest,
+                        $data['media']['duration'],
+                        $config['newsletter_time_font']
+                    );
+                }
+                */
             }
         }
         return $data;
