@@ -132,12 +132,12 @@ class ContentGenerator extends Helper {
                     $imageNewsletterDest,
                     $config['blog_data']['youtube_icon']
                 );
-                $this->embedText(
+                /*$this->embedText(
                     $imageNewsletterDest,
                     $imageNewsletterDest,
                     $data['media']['duration'],
                     $config['newsletter_time_font']
-                );
+                );*/
             }
         }
         return $data;
