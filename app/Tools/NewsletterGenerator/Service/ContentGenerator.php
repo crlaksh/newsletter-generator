@@ -9,6 +9,10 @@ class ContentGenerator extends Helper {
         $html = $this->renderTemplate($newsletterTemplate, $data);
         $html = $this->tidyHTML($html);
         file_put_contents($outputFile, $html);
+        array_pop($data['blocks']);
+        $html = $this->renderTemplate($newsletterTemplate, $data);
+        $html = $this->tidyHTML($html);
+        file_put_contents($outputFile . ".tn.html", $html);
     }
 
     function saveNewData($newsletterDataTemplate, $data, $outputFile) {
