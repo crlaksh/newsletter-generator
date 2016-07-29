@@ -142,8 +142,8 @@ class Helper {
         $jpeg = imagecreatefromjpeg($image);
         list($width, $height) = getimagesize($image);
         list($newwidth, $newheight) = getimagesize($embedImage);
-        $x = ($width) - ($newwidth) - 4;
-        $y = ($height) - ($newheight) - 4;
+        $x = ($width) - ($newwidth) - 8;
+        $y = ($height) - ($newheight) - 8;
         $outFile = imagecreatetruecolor($width, $height);
         imagecopyresampled($outFile, $jpeg, 0, 0, 0, 0, $width, $height, $width, $height);
         imagecopyresampled($outFile, $png, $x, $y, 0, 0, $newwidth, $newheight, $newwidth, $newheight);

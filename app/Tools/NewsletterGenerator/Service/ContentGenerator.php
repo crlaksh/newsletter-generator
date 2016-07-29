@@ -8,11 +8,11 @@ class ContentGenerator extends Helper {
     function execute($newsletterTemplate, $data, $outputFile) {
         $html = $this->renderTemplate($newsletterTemplate, $data);
         $html = $this->tidyHTML($html);
-        file_put_contents($outputFile, $html);
+        file_put_contents($outputFile . ".chennai.html", $html);
         array_pop($data['blocks']);
         $html = $this->renderTemplate($newsletterTemplate, $data);
         $html = $this->tidyHTML($html);
-        file_put_contents($outputFile . ".tn.html", $html);
+        file_put_contents($outputFile . ".tamilnadu.html", $html);
     }
 
     function saveNewData($newsletterDataTemplate, $data, $outputFile) {
