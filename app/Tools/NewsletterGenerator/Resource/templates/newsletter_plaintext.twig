@@ -1,0 +1,26 @@
+{% autoescape false %}
+{% set language = config['language'] %}
+{% if language == 'tamil' %}
+{% set readmore = "மேலும்" %}
+{% else %}
+{% set readmore = "More" %}
+{% endif %}
+Can't view Email? {{config['alternate_link']}}
+
+ஆனந்த அலை blog - வாரத்தின் டாப் பதிவுகள்
+Date: {{blocks[0]["data"][0]['media']['duration']}}
+{% for blockIndex, block in blocks %}
+{% if block["type"] != 'none' %}
+{% set data = block["data"] %}
+{% set data = data[0] %}
+
+
+{{data['title']}}
+{% if data['blurb'] != 'none' %}{{data['blurb']}}{% endif %}
+{{readmore}}: {{data['url']}}{% if ('?' in data['url']) == false  %}?{% include 'utm_param.twig' %}{% endif %}
+{% endif %}
+{% endfor %}
+
+
+{% include 'footer_plain_lb.twig' %}
+{% endautoescape %}
