@@ -25,6 +25,7 @@
     "newsletter_data_file": "data.xls",
     "original_images_path": "images/original/",
     "newsletter_template": "app/Tools/NewsletterGenerator/Resource/templates/newsletter.twig",
+    "newsletter_plaintext_template": "app/Tools/NewsletterGenerator/Resource/templates/newsletter_plaintext.twig",
     "newsletter_english_font": "app/Tools/NewsletterGenerator/Resource/fonts/arial.ttf",
     "newsletter_time_font": "app/Tools/NewsletterGenerator/Resource/fonts/TlwgTypewriter-Bold.ttf",
     "newsletter_tamil_font": "app/Tools/NewsletterGenerator/Resource/fonts/Latha.ttf",

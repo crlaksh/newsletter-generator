@@ -15,6 +15,14 @@ class ContentGenerator extends Helper {
         file_put_contents($outputFile . ".tamilnadu.html", $html);
     }
 
+    function executePlainText($newsletterTemplate, $data, $outputFile) {
+        $html = $this->renderTemplate($newsletterTemplate, $data);
+        file_put_contents($outputFile . ".chennai.txt", $html);
+        array_pop($data['blocks']);
+        $html = $this->renderTemplate($newsletterTemplate, $data);
+        file_put_contents($outputFile . ".tamilnadu.txt", $html);
+    }
+
     function saveNewData($newsletterDataTemplate, $data, $outputFile) {
         $this->renderTemplate($newsletterDataTemplate, $data, $outputFile);
     }

@@ -24,26 +24,7 @@ class NewsletterGenerator extends Helper {
         $newsletterYear = explode(', ', $newsletterDate)[1];
         $newsletterDayEndingNumber = substr($newsletterDay, -1);
 
-        switch ($newsletterDayEndingNumber) {
-             case '1':
-                 $newsletterDaySuffix = 'st';
-                 break;
-             case '2':
-                 $newsletterDaySuffix = 'nd';
-                 break;
-             case '3':
-                 $newsletterDaySuffix = 'rd';
-             
-             default:
-                 $newsletterDaySuffix = 'th';
-                 break;
-        }
-        if ($newsletterMonth === '11' ||
-            $newsletterMonth === '12' ||
-            $newsletterMonth === '13') {
-            $newsletterDaySuffix = 'th';
-        }
-        $newsletterDateEng = $newsletterDay . $newsletterDaySuffix . "_" . $newsletterData['config']['month_locale'][$newsletterMonth] . "_" . $newsletterYear;
+        $newsletterDateEng = $newsletterDay . "_" . $newsletterData['config']['month_locale'][$newsletterMonth] . "_" . $newsletterYear;
         $newsletterFileNameSource = $newsletterData['config']['utm_campaign'] . "_" . $newsletterDateEng;
         $newsletterData['config']['utm_campaign'] = $newsletterFileNameSource;
 
@@ -58,6 +39,11 @@ class NewsletterGenerator extends Helper {
 
         $contentGenerator->execute(
             $config['newsletter_template'], $newsletterData, $newsletterFile
+        );
+
+
+        $contentGenerator->executePlainText(
+            $config['newsletter_plaintext_template'], $newsletterData, $newsletterFile
         );
 
         $contentGenerator->saveNewData(
