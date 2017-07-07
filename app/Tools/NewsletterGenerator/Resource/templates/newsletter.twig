@@ -24,6 +24,7 @@
                     </td>
                 </tr>
                 {% for blockIndex, block in blocks %}
+                {% if block["type"] != 'footer' and block["type"] != 'footer_lb' %}
                 <!-- <<<<<<< ===================== BLOCK {{blockIndex + 1}} BEGINS ===================== >>>>>>> -->
                 <tr class="block_{{blockIndex + 1}}">
                     <td>
@@ -34,14 +35,15 @@
                     </td>
                 </tr>
                 <!-- >>>>>>> ===================== BLOCK {{blockIndex + 1}} ENDS ===================== <<<<<<< -->
-                {% if block["type"] != 'header' and block["type"] != 'footer' and block["type"] != 'none' %}
+                {% endif %}
+                {% if block["type"] != 'header' and block["type"] != 'footer' and block["type"] != 'footer_lb' and block["type"] != 'none' %}
                 <tr>
                     <td style="color: #7c7c7c; font-family:  Arial, Helvetica, sans-serif, Latha, Inaimathi; font-size: 68.8%; cursor: default;">
                         <div class="median" style="margin-bottom: 30px;"></div>
                     </td>
                 </tr>
                 {% endif %}
-                {% endfor %}
+                {% if block["type"] == 'footer' %}
                 <!-- <<<<<<< ===================== FOOTER BLOCK BEGINS ===================== >>>>>>> -->
                 <tr>
                     <td style="color: #7c7c7c; font-family:  Arial, Helvetica, sans-serif, Latha, Inaimathi; font-size: 68.8%; cursor: default;">
@@ -49,6 +51,17 @@
                     </td>
                 </tr>
                 <!-- >>>>>>> ===================== FOOTER BLOCK ENDS ===================== <<<<<<< -->
+                {% endif %}
+                {% if block["type"] == 'footer_lb' %}
+                <!-- <<<<<<< ===================== FOOTER BLOCK BEGINS ===================== >>>>>>> -->
+                <tr>
+                    <td style="color: #7c7c7c; font-family:  Arial, Helvetica, sans-serif, Latha, Inaimathi; font-size: 68.8%; cursor: default;">
+                        {% include 'footer_lb.twig' %}
+                    </td>
+                </tr>
+                <!-- >>>>>>> ===================== FOOTER BLOCK ENDS ===================== <<<<<<< -->
+                {% endif %}
+                {% endfor %}
             </table>
         </div>
     </body>

@@ -19,8 +19,13 @@ Date: {{blocks[0]["data"][0]['media']['duration']}}
 {% if data['blurb'] != 'none' %}{{data['blurb']}}{% endif %}
 {{readmore}}: {{data['url']}}{% if ('?' in data['url']) == false  %}?{% include 'utm_param.twig' %}{% endif %}
 {% endif %}
+
+{% if block["type"] == 'footer' %}
+{% include 'footer_plain.twig' %}
+{% endif %}
+{% if block["type"] == 'footer_lb' %}
+{% include 'footer_plain_lb.twig' %}
+{% endif %}
 {% endfor %}
 
-
-{% include 'footer_plain.twig' %}
 {% endautoescape %}

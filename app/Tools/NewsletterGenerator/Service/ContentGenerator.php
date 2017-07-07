@@ -9,7 +9,10 @@ class ContentGenerator extends Helper {
         $html = $this->renderTemplate($newsletterTemplate, $data);
         $html = $this->tidyHTML($html);
         file_put_contents($outputFile . ".chennai.html", $html);
+        $temp = end($data['blocks']);
         array_pop($data['blocks']);
+        array_pop($data['blocks']);
+        array_push($data['blocks'], $temp);
         $html = $this->renderTemplate($newsletterTemplate, $data);
         $html = $this->tidyHTML($html);
         file_put_contents($outputFile . ".tamilnadu.html", $html);
@@ -18,7 +21,10 @@ class ContentGenerator extends Helper {
     function executePlainText($newsletterTemplate, $data, $outputFile) {
         $html = $this->renderTemplate($newsletterTemplate, $data);
         file_put_contents($outputFile . ".chennai.txt", $html);
+        $temp = end($data['blocks']);
         array_pop($data['blocks']);
+        array_pop($data['blocks']);
+        array_push($data['blocks'], $temp);
         $html = $this->renderTemplate($newsletterTemplate, $data);
         file_put_contents($outputFile . ".tamilnadu.txt", $html);
     }
